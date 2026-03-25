@@ -26,3 +26,20 @@ test("global navigation uses desktop nav and mobile menu overlay correctly", asy
   await expect(dialog).toBeHidden();
   await expect(menuToggle).toBeFocused();
 });
+
+test("mobile navigation falls back to the primary nav when javascript is unavailable", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    javaScriptEnabled: false,
+    viewport: { width: 390, height: 844 },
+  });
+  const page = await context.newPage();
+
+  await page.goto("/");
+  await expect(page.locator(".site-nav")).toBeVisible();
+  await expect(page.locator("[data-menu-open]")).toBeHidden();
+  await expect(page.getByRole("link", { name: /about/i })).toBeVisible();
+
+  await context.close();
+});

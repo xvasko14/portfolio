@@ -359,12 +359,14 @@ p {
   .site-nav ul {
     gap: var(--space-2);
   }
+}
 
-  .site-nav {
+@media (max-width: 720px) {
+  .js .site-nav {
     display: none;
   }
 
-  .menu-toggle {
+  .js .menu-toggle {
     display: inline-flex;
   }
 }

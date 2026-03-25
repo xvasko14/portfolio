@@ -1,3 +1,5 @@
+document.documentElement.classList.add("js");
+
 const openButton = document.querySelector<HTMLElement>("[data-menu-open]");
 const overlay = document.querySelector<HTMLElement>("[data-menu-overlay]");
 const panel = document.querySelector<HTMLElement>("[data-menu-panel]");
