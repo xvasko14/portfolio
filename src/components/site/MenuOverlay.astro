@@ -1,6 +1,8 @@
 ---
 import ButtonLink from "../ui/ButtonLink.astro";
 import { site } from "../../data/site";
+
+const isProvisionalContact = site.contact.status === "provisional";
 ---
 
 <div
@@ -32,11 +34,12 @@ import { site } from "../../data/site";
 
     <div class="menu-overlay__meta">
       <p>{site.role}</p>
-      <ul class="menu-overlay__socials" aria-label="Social links">
+      {isProvisionalContact ? <p class="menu-overlay__note">{site.contact.note}</p> : null}
+      <ul class="menu-overlay__socials" aria-label={isProvisionalContact ? "Provisional social links" : "Social links"}>
         {site.socials.map((item) => (
           <li>
             <ButtonLink href={item.href} target="_blank" rel="noreferrer" variant="ghost">
-              {item.label}
+              {isProvisionalContact ? `${item.label} (placeholder)` : item.label}
             </ButtonLink>
           </li>
         ))}

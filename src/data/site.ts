@@ -1,6 +1,8 @@
 import { SITE_URL } from "./site-config.js";
 
 const contact = {
+  status: "provisional",
+  note: "Placeholder contact channels until the real accounts are connected.",
   github: { href: "https://github.com/your-handle", label: "GitHub" },
   linkedin: { href: "https://linkedin.com/in/your-handle", label: "LinkedIn" },
   email: { href: "mailto:hello@example.com", label: "Email" },
