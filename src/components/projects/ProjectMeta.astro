@@ -1,12 +1,9 @@
 ---
-interface Props {
-  year: number;
-  tags: string[];
-  status: "concept" | "in-progress" | "shipped";
-  featured?: boolean;
-}
+import type { ProjectData } from "./project-collection";
 
-const { year, tags, status, featured = false } = Astro.props;
+interface Props extends Pick<ProjectData, "year" | "tags" | "status"> {}
+
+const { year, tags, status } = Astro.props;
 ---
 
 <aside class="project-meta" aria-label="Project metadata">
@@ -18,10 +15,6 @@ const { year, tags, status, featured = false } = Astro.props;
     <div>
       <dt>Year</dt>
       <dd>{year}</dd>
-    </div>
-    <div>
-      <dt>Featured</dt>
-      <dd>{featured ? "Yes" : "No"}</dd>
     </div>
     <div>
       <dt>Tags</dt>

@@ -1,8 +1,11 @@
 ---
+import { getSortedProjects } from "../projects/project-collection";
 import Section from "../ui/Section.astro";
 import SectionIntro from "../ui/SectionIntro.astro";
 import ButtonLink from "../ui/ButtonLink.astro";
 import { home } from "../../data/home";
+
+const projects = (await getSortedProjects()).slice(0, 3);
 ---
 
 <Section class="home-projects" id="projects-preview">
@@ -11,11 +14,15 @@ import { home } from "../../data/home";
   </SectionIntro>
 
   <div class="project-preview-grid">
-    {home.projects.entries.map((item) => (
+    {projects.map((project) => (
       <article class="project-preview-card">
-        <h3>{item.title}</h3>
-        <p>{item.summary}</p>
-        <p class="project-preview-card__outcome">{item.outcome}</p>
+        <h3>{project.data.title}</h3>
+        <p>{project.data.summary}</p>
+        <p class="project-preview-card__outcome">
+          {project.data.status === "in-progress"
+            ? "Current status: actively being shaped into a fuller write-up."
+            : `Current status: ${project.data.status}.`}
+        </p>
       </article>
     ))}
   </div>

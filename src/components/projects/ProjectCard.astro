@@ -1,11 +1,8 @@
 ---
-interface Props {
+import type { ProjectData } from "./project-collection";
+
+interface Props extends Pick<ProjectData, "title" | "summary" | "year" | "tags" | "status"> {
   href: string;
-  title: string;
-  summary: string;
-  year: number;
-  tags: string[];
-  status: "concept" | "in-progress" | "shipped";
 }
 
 const { href, title, summary, year, tags, status } = Astro.props;

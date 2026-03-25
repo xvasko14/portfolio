@@ -10,12 +10,6 @@ export interface CredibilitySignal {
   note: string;
 }
 
-export interface ProjectPreviewEntry {
-  title: string;
-  summary: string;
-  outcome: string;
-}
-
 export const home = {
   hero: {
     eyebrow: "DevOps Developer",
@@ -97,13 +91,6 @@ export const home = {
       href: "/projects",
       label: "Browse project direction",
     },
-    entries: [
-      {
-        title: "Homelab observability baseline",
-        summary: "A real starter entry about tightening dashboards and alerts in a self-hosted setup without overstating the scope.",
-        outcome: "Current outcome: a clearer monitoring baseline and a better sense of which signals are useful versus noisy.",
-      },
-    ] satisfies ProjectPreviewEntry[],
   },
   contact: {
     eyebrow: "Next step",

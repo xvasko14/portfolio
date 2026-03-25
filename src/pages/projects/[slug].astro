@@ -1,9 +1,10 @@
 ---
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import { getSortedProjects } from "../../components/projects/project-collection";
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
+  const projects = await getSortedProjects();
 
   return projects.map((project) => ({
     params: { slug: project.id },
@@ -21,7 +22,6 @@ const { Content } = await render(project);
   year={project.data.year}
   tags={project.data.tags}
   status={project.data.status}
-  featured={project.data.featured}
 >
   <Content />
 </ProjectLayout>
