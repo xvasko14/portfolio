@@ -1,9 +1,10 @@
 const ROUTE_INTRO_KEY = "route-intro-next-route";
 const ROUTE_PATHS = new Set(["/", "/about", "/projects", "/contact"]);
 const ROOT_SELECTOR = "[data-route-intro-root]";
-const TITLE_STATE_DURATION = 960;
-const GREETING_STATE_DURATION = 1400;
-const REVEAL_CLEANUP_DELAY = 360;
+const PAGE_TITLE_STATE_DURATION = 780;
+const HOME_TITLE_STATE_DURATION = 900;
+const GREETING_STATE_DURATION = 1280;
+const REVEAL_CLEANUP_DELAY = 320;
 
 const normalizePath = (value) => {
   if (value === "/") {
@@ -156,7 +157,12 @@ const init = () => {
   const mode = path === "/" ? (internalNav ? "home-title" : "home-greetings") : "page-title";
   const title = getRouteTitle(config, path, heading.textContent || "");
   const greetings = Array.isArray(config.homeGreetings) ? config.homeGreetings : [];
-  const introDuration = mode === "home-greetings" ? GREETING_STATE_DURATION : TITLE_STATE_DURATION;
+  const introDuration =
+    mode === "home-greetings"
+      ? GREETING_STATE_DURATION
+      : mode === "home-title"
+        ? HOME_TITLE_STATE_DURATION
+        : PAGE_TITLE_STATE_DURATION;
   const body = document.body;
 
   heading.textContent = title;
@@ -183,11 +189,11 @@ const init = () => {
       }
 
       greeting.textContent = greetings[index];
-    }, 140);
+    }, 120);
 
     window.setTimeout(() => {
       window.clearInterval(interval);
-    }, introDuration - 80);
+    }, introDuration - 100);
   } else {
     greeting.textContent = "";
   }
