@@ -773,6 +773,23 @@ p {
   list-style: none;
 }
 
+.footer-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.footer-icon-link:hover {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
 .site-footer__note,
 .menu-overlay__note {
   margin: 0;
