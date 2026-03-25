@@ -1,0 +1,33 @@
+---
+interface Props {
+  year: number;
+  tags: string[];
+  status: "concept" | "in-progress" | "shipped";
+  featured?: boolean;
+}
+
+const { year, tags, status, featured = false } = Astro.props;
+---
+
+<aside class="project-meta" aria-label="Project metadata">
+  <dl class="project-meta__list">
+    <div>
+      <dt>Status</dt>
+      <dd>{status.replace("-", " ")}</dd>
+    </div>
+    <div>
+      <dt>Year</dt>
+      <dd>{year}</dd>
+    </div>
+    <div>
+      <dt>Featured</dt>
+      <dd>{featured ? "Yes" : "No"}</dd>
+    </div>
+    <div>
+      <dt>Tags</dt>
+      <dd class="project-meta__tags">
+        {tags.map((tag) => <span>{tag}</span>)}
+      </dd>
+    </div>
+  </dl>
+</aside>

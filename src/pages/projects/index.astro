@@ -1,0 +1,74 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "../../components/projects/ProjectCard.astro";
+import Footer from "../../components/site/Footer.astro";
+import globalStylesHref from "../../styles/global.css?url";
+import { site } from "../../data/site";
+
+const projects = (await getCollection("projects")).sort((a, b) => {
+  if (a.data.featured !== b.data.featured) {
+    return Number(b.data.featured) - Number(a.data.featured);
+  }
+
+  return b.data.year - a.data.year;
+});
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{`Projects | ${site.title}`}</title>
+    <meta
+      name="description"
+      content="Selected DevOps and observability work, starting with one honest project entry and room to expand."
+    />
+    <link rel="preload" href={globalStylesHref} as="style" />
+    <link rel="stylesheet" href={globalStylesHref} />
+  </head>
+  <body>
+    <div class="site-shell">
+      <main>
+        <section class="section project-shell">
+          <div class="container">
+            <a class="project-shell__home" href="/">Vasko Michal</a>
+          </div>
+        </section>
+
+        <section class="section page-hero projects-page">
+          <div class="container">
+            <div class="content-width">
+              <p class="section-intro__eyebrow">Projects</p>
+              <h1>Projects and working notes</h1>
+              <p class="page-hero__lead">
+                This section is collection-backed now, but still intentionally modest. It starts with one
+                real project entry instead of a padded set of case studies.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section projects-index">
+          <div class="container">
+            <div class="projects-grid">
+              {projects.map((project) => (
+                <ProjectCard
+                  href={`/projects/${project.id}`}
+                  title={project.data.title}
+                  summary={project.data.summary}
+                  year={project.data.year}
+                  tags={project.data.tags}
+                  status={project.data.status}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>

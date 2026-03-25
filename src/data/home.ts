@@ -92,26 +92,16 @@ export const home = {
   projects: {
     eyebrow: "Selected work",
     title: "Selected work",
-    body: "Directional previews for the kind of platform and delivery work this portfolio will feature. Full case studies are still being assembled.",
+    body: "The projects section now points to a real content collection. It starts with one honest starter entry and leaves room for stronger case studies later.",
     footerCta: {
       href: "/projects",
       label: "Browse project direction",
     },
     entries: [
       {
-        title: "Release pipeline refresh",
-        summary: "A placeholder case study for consolidating build, test, and deploy steps into one cleaner flow.",
-        outcome: "Example outcome: fewer manual release checks and a shorter path from merge to deploy.",
-      },
-      {
-        title: "Environment baseline cleanup",
-        summary: "A stand-in example for tightening infrastructure setup so environments are easier to reproduce.",
-        outcome: "Example outcome: easier onboarding and more confidence when promoting changes.",
-      },
-      {
-        title: "Operational signal pass",
-        summary: "A placeholder story about improving dashboards, alerts, and service visibility around critical paths.",
-        outcome: "Example outcome: teams spend less time guessing and more time responding with context.",
+        title: "Homelab observability baseline",
+        summary: "A real starter entry about tightening dashboards and alerts in a self-hosted setup without overstating the scope.",
+        outcome: "Current outcome: a clearer monitoring baseline and a better sense of which signals are useful versus noisy.",
       },
     ] satisfies ProjectPreviewEntry[],
   },

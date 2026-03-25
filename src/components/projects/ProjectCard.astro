@@ -1,0 +1,26 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  summary: string;
+  year: number;
+  tags: string[];
+  status: "concept" | "in-progress" | "shipped";
+}
+
+const { href, title, summary, year, tags, status } = Astro.props;
+---
+
+<a class="project-card" href={href}>
+  <div class="project-card__header">
+    <p class="project-card__eyebrow">{status.replace("-", " ")}</p>
+    <span class="project-card__year">{year}</span>
+  </div>
+
+  <h2>{title}</h2>
+  <p>{summary}</p>
+
+  <ul class="project-card__tags" aria-label="Project tags">
+    {tags.map((tag) => <li>{tag}</li>)}
+  </ul>
+</a>

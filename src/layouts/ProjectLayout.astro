@@ -1,0 +1,71 @@
+---
+import ProjectMeta from "../components/projects/ProjectMeta.astro";
+import Footer from "../components/site/Footer.astro";
+import globalStylesHref from "../styles/global.css?url";
+import { site } from "../data/site";
+
+interface Props {
+  title: string;
+  summary: string;
+  year: number;
+  tags: string[];
+  status: "concept" | "in-progress" | "shipped";
+  featured?: boolean;
+}
+
+const { title, summary, year, tags, status, featured = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{`${title} | ${site.title}`}</title>
+    <meta name="description" content={summary} />
+    <link rel="preload" href={globalStylesHref} as="style" />
+    <link rel="stylesheet" href={globalStylesHref} />
+  </head>
+  <body>
+    <div class="site-shell">
+      <main>
+        <section class="section project-shell">
+          <div class="container">
+            <a class="project-shell__home" href="/">Vasko Michal</a>
+          </div>
+        </section>
+
+        <section class="section project-hero">
+          <div class="container project-hero__grid">
+            <div class="content-width">
+              <p class="section-intro__eyebrow">Project</p>
+              <h1>{title}</h1>
+              <p class="project-hero__summary">{summary}</p>
+            </div>
+
+            <ProjectMeta year={year} tags={tags} status={status} featured={featured} />
+          </div>
+        </section>
+
+        <section class="section project-body">
+          <div class="container project-body__grid">
+            <article class="project-content prose">
+              <slot />
+            </article>
+
+            <aside class="project-nav" aria-label="Project navigation">
+              <p class="project-nav__label">Next step</p>
+              <a class="project-nav__link" href="/projects">Browse all projects</a>
+              <p class="project-nav__copy">
+                More case studies will appear here as they are written up with enough detail to be useful.
+              </p>
+            </aside>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>
