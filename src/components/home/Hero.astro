@@ -6,11 +6,13 @@ import { home } from "../../data/home";
 <section class="home-hero section">
   <div class="container home-hero__grid">
     <div class="home-hero__content">
-      <p class="section-intro__eyebrow home-hero__eyebrow">{home.hero.eyebrow}</p>
+      <p class="section-intro__eyebrow home-hero__eyebrow" data-reveal data-reveal-delay="0ms">
+        {home.hero.eyebrow}
+      </p>
       <h1>{home.hero.headline}</h1>
-      <p class="home-hero__lead">{home.hero.copy}</p>
+      <p class="home-hero__lead" data-reveal data-reveal-delay="90ms">{home.hero.copy}</p>
 
-      <div class="home-hero__actions">
+      <div class="home-hero__actions" data-reveal data-reveal-delay="160ms">
         <ButtonLink href={home.hero.primaryCta.href}>{home.hero.primaryCta.label}</ButtonLink>
         <ButtonLink href={home.hero.secondaryCta.href} variant="ghost">
           {home.hero.secondaryCta.label}
@@ -18,7 +20,7 @@ import { home } from "../../data/home";
       </div>
     </div>
 
-    <div class="home-hero__panel" aria-hidden="true">
+    <div class="home-hero__panel" aria-hidden="true" data-reveal data-reveal-delay="220ms">
       <div class="home-hero__panel-header">
         <span>{home.hero.panel.label}</span>
         <span>{home.hero.panel.status}</span>

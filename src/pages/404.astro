@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/ui/Section.astro";
+import ButtonLink from "../components/ui/ButtonLink.astro";
+---
+
+<BaseLayout title="404" description="Page not found. Return to the homepage.">
+  <Section class="page-hero not-found-page">
+    <div class="not-found-page__inner grid-accent">
+      <p class="section-intro__eyebrow">404</p>
+      <h1>Page not found.</h1>
+      <p class="page-hero__lead">
+        The route exists only as a placeholder in the void. Head back home to the working paths.
+      </p>
+      <div class="not-found-page__actions">
+        <ButtonLink href="/">Back home</ButtonLink>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

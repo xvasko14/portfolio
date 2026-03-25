@@ -10,8 +10,12 @@ import { home } from "../../data/home";
   </SectionIntro>
 
   <div class="capability-grid">
-    {home.capabilities.map((item) => (
-      <article class="capability-card">
+    {home.capabilities.map((item, index) => (
+      <article
+        class="capability-card"
+        data-reveal
+        style={`--reveal-delay: ${index * 90}ms;`}
+      >
         <p class="capability-card__kicker">{item.eyebrow}</p>
         <h3>{item.title}</h3>
         <p>{item.detail}</p>

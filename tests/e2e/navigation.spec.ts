@@ -43,3 +43,9 @@ test("mobile navigation falls back to the primary nav when javascript is unavail
 
   await context.close();
 });
+
+test("unknown routes render the branded 404 page", async ({ page }) => {
+  await page.goto("/missing-route");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/not found|404/i);
+  await expect(page.getByRole("link", { name: /back home/i })).toBeVisible();
+});

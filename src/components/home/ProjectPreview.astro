@@ -14,8 +14,12 @@ const projects = (await getSortedProjects()).slice(0, 3);
   </SectionIntro>
 
   <div class="project-preview-grid">
-    {projects.map((project) => (
-      <article class="project-preview-card">
+    {projects.map((project, index) => (
+      <article
+        class="project-preview-card"
+        data-reveal
+        style={`--reveal-delay: ${index * 100}ms;`}
+      >
         <h3>{project.data.title}</h3>
         <p>{project.data.summary}</p>
         <p class="project-preview-card__outcome">
