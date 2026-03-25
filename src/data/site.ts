@@ -1,11 +1,12 @@
 import { SITE_URL } from "./site-config.js";
 
 const contact = {
-  status: "provisional",
-  note: "Contact channels remain provisional until the real accounts are connected.",
-  github: { href: "https://github.com/your-handle", label: "GitHub" },
-  linkedin: { href: "https://linkedin.com/in/your-handle", label: "LinkedIn" },
-  email: { href: "mailto:hello@example.com", label: "Email" },
+  email: { href: "mailto:vaskomichal7@gmail.com", label: "Email" },
+  socials: [
+    { href: "https://linkedin.com/in/michal-vasko-06b84b158/?skipRedirect=true", label: "LinkedIn" },
+    { href: "https://www.instagram.com/majklvasko/", label: "Instagram" },
+    { href: "https://www.facebook.com/michal.m.vasko/", label: "Facebook" },
+  ],
 } as const;
 
 export const site = {
@@ -25,5 +26,5 @@ export const site = {
     { href: "/contact", label: "Contact" },
   ],
   contact,
-  socials: [contact.github, contact.linkedin],
+  socials: contact.socials,
 };

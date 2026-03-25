@@ -17,6 +17,7 @@ test("about and contact pages expose key content", async ({ page }) => {
   const main = page.getByRole("main");
   await expect(main.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(main.getByRole("link", { name: "Email" })).toHaveAttribute("href", /^mailto:/);
-  await expect(main.getByRole("link", { name: "GitHub" })).toBeVisible();
   await expect(main.getByRole("link", { name: "LinkedIn" })).toBeVisible();
+  await expect(main.getByRole("link", { name: "Instagram" })).toBeVisible();
+  await expect(main.getByRole("link", { name: "Facebook" })).toBeVisible();
 });

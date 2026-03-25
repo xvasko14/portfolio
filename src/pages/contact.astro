@@ -6,7 +6,7 @@ import { contact } from "../data/contact";
 import { site } from "../data/site";
 ---
 
-<BaseLayout title="Contact" description="Contact Vasko Michal by email, GitHub, or LinkedIn.">
+<BaseLayout title="Contact" description="Contact Vasko Michal by LinkedIn, Instagram, Facebook, or email.">
   <Section class="page-hero">
     <div class="content-width">
       <p class="section-intro__eyebrow">{contact.hero.eyebrow}</p>
@@ -21,12 +21,11 @@ import { site } from "../data/site";
 
       <div class="contact-actions" aria-label="Contact links">
         <ButtonLink href={site.contact.email.href}>{site.contact.email.label}</ButtonLink>
-        <ButtonLink href={site.contact.github.href} target="_blank" rel="noreferrer" variant="ghost">
-          {site.contact.github.label}
-        </ButtonLink>
-        <ButtonLink href={site.contact.linkedin.href} target="_blank" rel="noreferrer" variant="ghost">
-          {site.contact.linkedin.label}
-        </ButtonLink>
+        {site.socials.map((item) => (
+          <ButtonLink href={item.href} target="_blank" rel="noreferrer" variant="ghost">
+            {item.label}
+          </ButtonLink>
+        ))}
       </div>
     </div>
   </Section>

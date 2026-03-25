@@ -36,4 +36,4 @@ The site is static, so no backend or database setup is required. GitHub push can
 ## Notes
 
 - Site metadata is centralized in `src/data/site.ts`, and URL-dependent tags are gated in `src/layouts/BaseLayout.astro`.
-- Contact details and the `.eu` domain remain provisional until the final real-world values are available.
+- Contact channels are wired from `src/data/site.ts`, and the deployment URL still remains unset until the real domain is available.

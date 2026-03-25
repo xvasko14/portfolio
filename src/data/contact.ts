@@ -3,7 +3,7 @@ export const contact = {
     eyebrow: "Contact",
     title: "Reach out if you need steadier infrastructure or cleaner delivery.",
     body:
-      "This page uses placeholder contact links while the portfolio is still being filled in. Swap them with real channels before publishing.",
+      "Reach out on LinkedIn, Instagram, Facebook, or by email.",
   },
-  availability: "The contact buttons below are demo placeholders, not live contact promises.",
+  availability: "The contact buttons below use the real channels provided for this portfolio.",
 } as const;
