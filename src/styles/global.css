@@ -129,9 +129,7 @@ main {
 
 .site-nav a,
 .button-link,
-.menu-close,
-.site-footer__socials a,
-.menu-overlay__socials a {
+.menu-close {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -170,9 +168,7 @@ main {
 .site-nav a:hover,
 .button-link:hover,
 .menu-toggle:hover,
-.menu-close:hover,
-.site-footer__socials a:hover,
-.menu-overlay__socials a:hover {
+.menu-close:hover {
   border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
   background: var(--accent-soft);
   transform: translateY(-1px);
@@ -181,10 +177,7 @@ main {
 .site-nav a:focus-visible,
 .button-link:focus-visible,
 .menu-toggle:focus-visible,
-.menu-close:focus-visible,
-.site-footer__socials a:focus-visible,
-.menu-overlay__socials a:focus-visible,
-.site-footer__email:focus-visible {
+.menu-close:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 0.2rem;
 }
@@ -413,56 +406,10 @@ main {
   color: color-mix(in srgb, var(--text) 86%, var(--muted));
 }
 
-.contact-card__primary {
-  display: grid;
-  gap: 0.4rem;
-}
-
-.contact-card__label {
-  color: var(--accent);
-  font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.contact-card__email {
-  width: fit-content;
-  font-size: 1.05rem;
-}
-
-.contact-card__links {
+.contact-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-}
-
-.contact-card__links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem 0.95rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  text-decoration: none;
-  color: inherit;
-  transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
-}
-
-.contact-card__links a:hover {
-  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
-  background: var(--accent-soft);
-  transform: translateY(-1px);
-}
-
-.contact-card__links a:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 0.2rem;
 }
 
 h1,
@@ -620,10 +567,6 @@ p {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.site-footer__email {
-  color: var(--muted);
 }
 
 .menu-overlay[hidden] {

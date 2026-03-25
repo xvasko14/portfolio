@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Section from "../components/ui/Section.astro";
+import ButtonLink from "../components/ui/ButtonLink.astro";
 import { contact } from "../data/contact";
+import { site } from "../data/site";
 ---
 
 <BaseLayout title="Contact" description="Contact Vasko Michal by email, GitHub, or LinkedIn.">
@@ -17,18 +19,14 @@ import { contact } from "../data/contact";
     <div class="contact-card">
       <p class="contact-card__availability">{contact.availability}</p>
 
-      <div class="contact-card__primary">
-        <span class="contact-card__label">Email</span>
-        <a class="contact-card__email" href={contact.email.href}>{contact.email.value}</a>
-      </div>
-
-      <div class="contact-card__links" aria-label="Social links">
-        <a href={contact.github.href} target="_blank" rel="noreferrer">
-          {contact.github.label}
-        </a>
-        <a href={contact.linkedin.href} target="_blank" rel="noreferrer">
-          {contact.linkedin.label}
-        </a>
+      <div class="contact-actions" aria-label="Contact links">
+        <ButtonLink href={site.contact.email.href}>{site.contact.email.label}</ButtonLink>
+        <ButtonLink href={site.contact.github.href} target="_blank" rel="noreferrer" variant="ghost">
+          {site.contact.github.label}
+        </ButtonLink>
+        <ButtonLink href={site.contact.linkedin.href} target="_blank" rel="noreferrer" variant="ghost">
+          {site.contact.linkedin.label}
+        </ButtonLink>
       </div>
     </div>
   </Section>

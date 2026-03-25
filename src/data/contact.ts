@@ -3,20 +3,7 @@ export const contact = {
     eyebrow: "Contact",
     title: "Reach out if you need steadier infrastructure or cleaner delivery.",
     body:
-      "I am open to short-term consulting, portfolio discussions, and practical DevOps work that improves release confidence without adding noise.",
+      "This page uses placeholder contact links while the portfolio is still being filled in. Swap them with real channels before publishing.",
   },
-  availability: "Best reached by email. I usually reply when I am available and keep the conversation direct.",
-  email: {
-    label: "Email",
-    href: "mailto:hello@example.com",
-    value: "hello@example.com",
-  },
-  github: {
-    label: "GitHub",
-    href: "https://github.com/your-handle",
-  },
-  linkedin: {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/your-handle",
-  },
+  availability: "The contact buttons below are demo placeholders, not live contact promises.",
 } as const;

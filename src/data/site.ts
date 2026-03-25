@@ -1,5 +1,11 @@
 import { SITE_URL } from "./site-config.js";
 
+const contact = {
+  github: { href: "https://github.com/your-handle", label: "GitHub" },
+  linkedin: { href: "https://linkedin.com/in/your-handle", label: "LinkedIn" },
+  email: { href: "mailto:hello@example.com", label: "Email" },
+} as const;
+
 export const site = {
   title: "Vasko Michal",
   role: "DevOps Developer",
@@ -12,9 +18,6 @@ export const site = {
     { href: "/projects", label: "Projects" },
     { href: "/contact", label: "Contact" },
   ],
-  socials: [
-    { href: "https://github.com/your-handle", label: "GitHub" },
-    { href: "https://linkedin.com/in/your-handle", label: "LinkedIn" },
-    { href: "mailto:hello@example.com", label: "Email" },
-  ],
+  contact,
+  socials: [contact.github, contact.linkedin],
 };

@@ -1,8 +1,6 @@
 ---
+import ButtonLink from "../ui/ButtonLink.astro";
 import { site } from "../../data/site";
-
-const email = site.socials.find((item) => item.href.startsWith("mailto:"));
-const socials = site.socials.filter((item) => !item.href.startsWith("mailto:"));
 ---
 
 <footer class="site-footer">
@@ -16,16 +14,16 @@ const socials = site.socials.filter((item) => !item.href.startsWith("mailto:"));
 
     <div class="site-footer__content">
       <ul class="site-footer__socials" aria-label="Footer social links">
-        {socials.map((item) => (
-          <li><a href={item.href} target="_blank" rel="noreferrer">{item.label}</a></li>
+        {site.socials.map((item) => (
+          <li>
+            <ButtonLink href={item.href} target="_blank" rel="noreferrer" variant="ghost">
+              {item.label}
+            </ButtonLink>
+          </li>
         ))}
       </ul>
 
-      {email ? (
-        <a class="site-footer__email" href={email.href}>
-          {email.href.replace("mailto:", "")}
-        </a>
-      ) : null}
+      <ButtonLink href={site.contact.email.href} variant="ghost">{site.contact.email.label}</ButtonLink>
     </div>
   </div>
 </footer>
