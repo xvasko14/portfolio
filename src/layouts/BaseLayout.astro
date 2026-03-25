@@ -55,11 +55,17 @@ const pageTitle = title === site.title ? title : `${title} | ${site.title}`;
     </div>
 
     <script is:inline>
-      // Placeholder for a later menu script.
+      window.__portfolioMenuPlaceholder = {
+        ready: true,
+        status: "placeholder",
+      };
     </script>
 
     <script is:inline>
-      // Placeholder for later reveal behavior.
+      window.__portfolioRevealPlaceholder = {
+        ready: true,
+        status: "placeholder",
+      };
     </script>
   </body>
 </html>
