@@ -1,11 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/home/Hero.astro";
+import Intro from "../components/home/Intro.astro";
+import Capabilities from "../components/home/Capabilities.astro";
+import Credibility from "../components/home/Credibility.astro";
+import ProjectPreview from "../components/home/ProjectPreview.astro";
+import ContactBand from "../components/home/ContactBand.astro";
 ---
 
 <BaseLayout>
-  <section class="section">
-    <div class="container">
-      <p>Portfolio homepage placeholder.</p>
-    </div>
-  </section>
+  <Hero />
+  <Intro />
+  <Capabilities />
+  <Credibility />
+  <ProjectPreview />
+  <ContactBand />
 </BaseLayout>

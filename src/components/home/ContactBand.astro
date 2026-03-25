@@ -1,0 +1,17 @@
+---
+import Section from "../ui/Section.astro";
+import ButtonLink from "../ui/ButtonLink.astro";
+import { home } from "../../data/home";
+---
+
+<Section class="contact-band" id="contact-band">
+  <div class="contact-band__inner">
+    <div>
+      <p class="section-intro__eyebrow">{home.contact.eyebrow}</p>
+      <h2>{home.contact.title}</h2>
+      <p>{home.contact.body}</p>
+    </div>
+
+    <ButtonLink href={home.contact.cta.href}>{home.contact.cta.label}</ButtonLink>
+  </div>
+</Section>

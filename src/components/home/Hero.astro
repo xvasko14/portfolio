@@ -1,0 +1,33 @@
+---
+import ButtonLink from "../ui/ButtonLink.astro";
+import { home } from "../../data/home";
+---
+
+<section class="home-hero section">
+  <div class="container home-hero__grid">
+    <div class="home-hero__content">
+      <p class="section-intro__eyebrow home-hero__eyebrow">{home.hero.eyebrow}</p>
+      <h1>{home.hero.headline}</h1>
+      <p class="home-hero__lead">{home.hero.copy}</p>
+
+      <div class="home-hero__actions">
+        <ButtonLink href={home.hero.primaryCta.href}>{home.hero.primaryCta.label}</ButtonLink>
+        <ButtonLink href={home.hero.secondaryCta.href} variant="ghost">
+          {home.hero.secondaryCta.label}
+        </ButtonLink>
+      </div>
+    </div>
+
+    <div class="home-hero__panel" aria-hidden="true">
+      <div class="home-hero__panel-header">
+        <span>ops://signal</span>
+        <span>stable path</span>
+      </div>
+      <ul class="home-hero__highlights">
+        {home.hero.highlights.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

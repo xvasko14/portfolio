@@ -1,0 +1,11 @@
+---
+import Section from "../ui/Section.astro";
+import SectionIntro from "../ui/SectionIntro.astro";
+import { home } from "../../data/home";
+---
+
+<Section class="home-intro" id="intro">
+  <SectionIntro eyebrow={home.intro.eyebrow} title={home.intro.title}>
+    <p>{home.intro.body}</p>
+  </SectionIntro>
+</Section>
