@@ -1,0 +1,84 @@
+---
+import globalStylesHref from "../styles/global.css?url";
+import { site } from "../data/site";
+
+interface Props {
+  description?: string;
+  title?: string;
+}
+
+const { description = site.description, title = site.title } = Astro.props;
+const pageTitle = title === site.title ? title : `${title} | ${site.title}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="preload" href={globalStylesHref} as="style" />
+    <link rel="stylesheet" href={globalStylesHref} />
+  </head>
+  <body>
+    <div class="site-shell">
+      <slot name="header">
+        <header class="site-header">
+          <div class="container site-header__inner">
+            <a class="site-brand" href="/">
+              <strong>{site.title}</strong>
+              <span>{site.role}</span>
+            </a>
+
+            <nav class="site-nav" aria-label="Primary">
+              <ul>
+                {site.navigation.map((item) => (
+                  <li><a href={item.href}>{item.label}</a></li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </slot>
+
+      <main>
+        <slot />
+      </main>
+
+      <slot name="footer">
+        <footer class="site-footer">
+          <div class="container site-footer__inner">
+            <div>
+              <p class="site-footer__eyebrow">{site.description}</p>
+            </div>
+
+            <ul class="social-list" aria-label="Social links">
+              {site.socials.map((item) => (
+                <li><a href={item.href}>{item.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        </footer>
+      </slot>
+    </div>
+
+    <script is:inline>
+      const menuToggle = document.querySelector("[data-menu-toggle]");
+      const menuTarget = document.querySelector("[data-menu]");
+
+      menuToggle?.addEventListener("click", () => {
+        menuTarget?.toggleAttribute("data-open");
+      });
+    </script>
+
+    <script is:inline>
+      const reveals = document.querySelectorAll("[data-reveal]");
+
+      reveals.forEach((element) => {
+        element.setAttribute("data-revealed", "true");
+      });
+    </script>
+  </body>
+</html>

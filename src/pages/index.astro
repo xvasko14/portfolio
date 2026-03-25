@@ -1,15 +1,21 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <section class="hero section">
+    <div class="container">
+      <div class="hero__panel" data-reveal>
+        <p class="eyebrow">{site.role}</p>
+        <h1>{site.title}</h1>
+        <p class="lede">{site.description}</p>
+
+        <div class="hero__actions">
+          <a class="button-link button-link--primary" href="/projects">See Work</a>
+          <a class="button-link" href="/contact">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
