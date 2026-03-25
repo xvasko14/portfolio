@@ -6,6 +6,9 @@ test("homepage exposes the site shell", async ({ page }) => {
   await expect(page.getByRole("link", { name: /about/i })).toBeVisible();
   await expect(page.getByRole("link", { name: /projects/i })).toBeVisible();
   await expect(page.getByRole("link", { name: /contact/i })).toBeVisible();
+  // New hero assertions
+  await expect(page.locator('img[src="/beh.jpg"]')).toBeVisible();
+  await expect(page.locator(".home-hero__name")).toContainText("Vasko Michal");
 });
 
 test("about and contact pages expose key content", async ({ page }) => {
