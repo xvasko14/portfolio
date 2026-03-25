@@ -11,18 +11,23 @@ import { mainRouteTitles } from "../data/route-intros";
   routeIntroTitle={mainRouteTitles["/contact"]}
 >
   <!-- Section 1: Hero -->
-    <section class="contact-hero content-width">
-      <div class="contact-hero__text">
-        <p class="section-intro__eyebrow">Contact</p>
-        <h1>Reach out if you need steadier infrastructure or cleaner delivery.</h1>
+  <section class="contact-hero-section">
+    <div class="container">
+      <div class="contact-hero">
+        <div class="contact-hero__text">
+          <p class="section-intro__eyebrow">Contact</p>
+          <h1>Reach out if you need steadier infrastructure or cleaner delivery.</h1>
+        </div>
+        <div class="contact-hero__photo">
+          <img src="/vasko.jpeg" alt="Vasko Michal" width="400" height="500" />
+        </div>
       </div>
-      <div class="contact-hero__photo">
-        <img src="/vasko.jpeg" alt="Vasko Michal" width="400" height="500" />
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Section 2: Form -->
-    <section class="contact-form-section content-width">
+  <!-- Section 2: Form -->
+  <section class="contact-form-section">
+    <div class="container">
       <form
         class="contact-form"
         action="https://formspree.io/f/YOUR_FORM_ID"
@@ -95,41 +100,7 @@ import { mainRouteTitles } from "../data/route-intros";
           <button type="submit" class="button-link button-link--solid">Send message &rarr;</button>
         </div>
       </form>
-    </section>
+    </div>
+  </section>
 
-    <!-- Section 3: Contact links -->
-    <section class="contact-links-section content-width">
-      <div class="contact-links">
-        <a href={site.contact.email.href}>{site.contact.email.label}</a>
-        {site.socials.map((item) => (
-          <a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a>
-        ))}
-      </div>
-      <p class="contact-availability">Currently available for new projects</p>
-    </section>
-
-    <!-- Section 4: Bottom bar -->
-  <div class="contact-bar content-width">
-    <span id="contact-local-time">Local time: &#8212;</span>
-    <span>&copy; 2026 Vasko Michal</span>
-  </div>
 </BaseLayout>
-
-<script>
-  function updateTime() {
-    const el = document.getElementById("contact-local-time");
-    if (!el) return;
-    const now = new Date();
-    const time = now.toLocaleTimeString(undefined, {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-    const tz =
-      new Intl.DateTimeFormat(undefined, { timeZoneName: "short" })
-        .formatToParts(now)
-        .find((p) => p.type === "timeZoneName")?.value ?? "";
-    el.textContent = `Local time: ${time}${tz ? " " + tz : ""}`;
-  }
-  updateTime();
-  setInterval(updateTime, 60_000);
-</script>
