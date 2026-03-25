@@ -49,36 +49,17 @@ const pageTitle = title === site.title ? title : `${title} | ${site.title}`;
 
       <slot name="footer">
         <footer class="site-footer">
-          <div class="container site-footer__inner">
-            <div>
-              <p class="site-footer__eyebrow">{site.description}</p>
-            </div>
-
-            <ul class="social-list" aria-label="Social links">
-              {site.socials.map((item) => (
-                <li><a href={item.href}>{item.label}</a></li>
-              ))}
-            </ul>
-          </div>
+          <div class="container site-footer__inner"></div>
         </footer>
       </slot>
     </div>
 
     <script is:inline>
-      const menuToggle = document.querySelector("[data-menu-toggle]");
-      const menuTarget = document.querySelector("[data-menu]");
-
-      menuToggle?.addEventListener("click", () => {
-        menuTarget?.toggleAttribute("data-open");
-      });
+      // Placeholder for a later menu script.
     </script>
 
     <script is:inline>
-      const reveals = document.querySelectorAll("[data-reveal]");
-
-      reveals.forEach((element) => {
-        element.setAttribute("data-revealed", "true");
-      });
+      // Placeholder for later reveal behavior.
     </script>
   </body>
 </html>
