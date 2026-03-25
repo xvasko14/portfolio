@@ -14,8 +14,9 @@ interface Props {
 
 const { description = site.description, title = site.title } = Astro.props;
 const pageTitle = title === site.title ? title : `${title} | ${site.title}`;
-const canonicalUrl = new URL(Astro.url.pathname, site.url).href;
-const ogImageUrl = new URL(site.assets.ogImage, site.url).href;
+const hasSiteUrl = site.url.length > 0;
+const canonicalUrl = hasSiteUrl ? new URL(Astro.url.pathname, site.url).href : null;
+const ogImageUrl = hasSiteUrl ? new URL(site.assets.ogImage, site.url).href : site.assets.ogImage;
 ---
 
 <!doctype html>
@@ -27,13 +28,13 @@ const ogImageUrl = new URL(site.assets.ogImage, site.url).href;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#07111f" />
-    <link rel="canonical" href={canonicalUrl} />
+    {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
     <link rel="icon" href={site.assets.favicon} type="image/svg+xml" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.title} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalUrl} />
+    {canonicalUrl ? <meta property="og:url" content={canonicalUrl} /> : null}
     <meta property="og:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />

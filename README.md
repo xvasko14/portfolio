@@ -1,6 +1,11 @@
 # My Portfolio
 
-Static Astro portfolio for a DevOps developer. The site is intended for GitHub Pages or Cloudflare Pages, with content and metadata kept in the repo.
+Static Astro portfolio for a DevOps developer. Cloudflare Pages is the documented deployment target, with content and metadata kept in the repo.
+
+## Prerequisites
+
+- Node.js 22.12.0 or newer
+- npm
 
 ## Local setup
 

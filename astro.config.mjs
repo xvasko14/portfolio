@@ -3,11 +3,13 @@ import { defineConfig } from 'astro/config';
 
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import { site } from './src/data/site.ts';
+import { SITE_URL } from './src/data/site-config.js';
+
+const integrations = [mdx(), ...(SITE_URL ? [sitemap()] : [])];
 
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: site.url,
-  integrations: [mdx(), sitemap()]
+  ...(SITE_URL ? { site: SITE_URL } : {}),
+  integrations
 });

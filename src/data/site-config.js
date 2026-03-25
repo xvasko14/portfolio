@@ -1,3 +1,2 @@
-export const PROVISIONAL_SITE_URL = "https://example.eu";
-
-export const SITE_URL = PROVISIONAL_SITE_URL;
+// Leave unset until the real Cloudflare Pages or custom domain URL is known.
+export const SITE_URL = "";

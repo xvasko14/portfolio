@@ -1,4 +1,4 @@
-import { PROVISIONAL_SITE_URL } from "./site-config.js";
+import { SITE_URL } from "./site-config.js";
 
 const contact = {
   status: "provisional",
@@ -13,7 +13,7 @@ export const site = {
   role: "DevOps Developer",
   description:
     "DevOps developer building reliable infrastructure, delivery pipelines, and calmer engineering systems.",
-  url: PROVISIONAL_SITE_URL,
+  url: SITE_URL,
   assets: {
     favicon: "/favicon.svg",
     ogImage: "/og-default.svg",
