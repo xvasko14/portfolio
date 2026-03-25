@@ -1,12 +1,13 @@
 ---
 import Section from "../ui/Section.astro";
 import SectionIntro from "../ui/SectionIntro.astro";
+import ButtonLink from "../ui/ButtonLink.astro";
 import { home } from "../../data/home";
 ---
 
 <Section class="home-projects" id="projects-preview">
   <SectionIntro eyebrow={home.projects.eyebrow} title={home.projects.title}>
-    <p>Early case-study placeholders that show the kind of platform and delivery work this portfolio will feature.</p>
+    <p>{home.projects.body}</p>
   </SectionIntro>
 
   <div class="project-preview-grid">
@@ -15,8 +16,13 @@ import { home } from "../../data/home";
         <h3>{item.title}</h3>
         <p>{item.summary}</p>
         <p class="project-preview-card__outcome">{item.outcome}</p>
-        <a class="project-preview-card__link" href={item.href}>View project list</a>
       </article>
     ))}
+  </div>
+
+  <div class="project-preview__actions">
+    <ButtonLink href={home.projects.footerCta.href} variant="ghost">
+      {home.projects.footerCta.label}
+    </ButtonLink>
   </div>
 </Section>

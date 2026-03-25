@@ -1,6 +1,6 @@
 export interface Capability {
+  eyebrow: string;
   title: string;
-  description: string;
   detail: string;
 }
 
@@ -14,7 +14,6 @@ export interface ProjectPreviewEntry {
   title: string;
   summary: string;
   outcome: string;
-  href: string;
 }
 
 export const home = {
@@ -31,31 +30,40 @@ export const home = {
       href: "/projects",
       label: "See selected work",
     },
-    highlights: [
-      "Infrastructure as code with clear handoff paths",
-      "Delivery pipelines built for repeatability, not ceremony",
-      "Observability and release practices shaped around calm operations",
-    ],
+    panel: {
+      label: "ops://signal",
+      status: "stable path",
+      highlights: [
+        "Infrastructure as code with clear handoff paths",
+        "Delivery pipelines built for repeatability, not ceremony",
+        "Observability and release practices shaped around calm operations",
+      ],
+    },
   },
   intro: {
     eyebrow: "Positioning",
     title: "I work at the point where product ambition meets operational reality.",
     body: "The focus is not on adding more moving parts. It is on making the critical path more dependable, the deployment story more predictable, and the day-to-day engineering experience easier to trust.",
   },
+  capabilitiesSection: {
+    eyebrow: "Capabilities",
+    title: "What I work on",
+    body: "Core areas where I help teams make delivery and operations more dependable.",
+  },
   capabilities: [
     {
-      title: "Platform foundations",
-      description: "Terraform-driven environments, deployment baselines, and service scaffolding.",
+      eyebrow: "Platform foundations",
+      title: "Terraform-driven environments, deployment baselines, and service scaffolding.",
       detail: "I aim for setups that are understandable by the next engineer, not just automatable by the first one.",
     },
     {
-      title: "Delivery systems",
-      description: "CI/CD pipelines, release workflows, and quality gates that fit the team.",
+      eyebrow: "Delivery systems",
+      title: "CI/CD pipelines, release workflows, and quality gates that fit the team.",
       detail: "The goal is faster iteration with fewer surprises, especially during handoffs and production changes.",
     },
     {
-      title: "Operational clarity",
-      description: "Logging, monitoring, and incident-ready feedback loops that reduce guesswork.",
+      eyebrow: "Operational clarity",
+      title: "Logging, monitoring, and incident-ready feedback loops that reduce guesswork.",
       detail: "Good operations should make important signals obvious before a release or outage becomes expensive.",
     },
   ] satisfies Capability[],
@@ -84,24 +92,26 @@ export const home = {
   projects: {
     eyebrow: "Selected work",
     title: "Selected work",
+    body: "Directional previews for the kind of platform and delivery work this portfolio will feature. Full case studies are still being assembled.",
+    footerCta: {
+      href: "/projects",
+      label: "Browse project direction",
+    },
     entries: [
       {
         title: "Release pipeline refresh",
         summary: "A placeholder case study for consolidating build, test, and deploy steps into one cleaner flow.",
         outcome: "Example outcome: fewer manual release checks and a shorter path from merge to deploy.",
-        href: "/projects",
       },
       {
         title: "Environment baseline cleanup",
         summary: "A stand-in example for tightening infrastructure setup so environments are easier to reproduce.",
         outcome: "Example outcome: easier onboarding and more confidence when promoting changes.",
-        href: "/projects",
       },
       {
         title: "Operational signal pass",
         summary: "A placeholder story about improving dashboards, alerts, and service visibility around critical paths.",
         outcome: "Example outcome: teams spend less time guessing and more time responding with context.",
-        href: "/projects",
       },
     ] satisfies ProjectPreviewEntry[],
   },

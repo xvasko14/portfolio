@@ -5,15 +5,15 @@ import { home } from "../../data/home";
 ---
 
 <Section class="home-capabilities" id="capabilities">
-  <SectionIntro eyebrow="Capabilities" title="What I work on">
-    <p>Core areas where I help teams make delivery and operations more dependable.</p>
+  <SectionIntro eyebrow={home.capabilitiesSection.eyebrow} title={home.capabilitiesSection.title}>
+    <p>{home.capabilitiesSection.body}</p>
   </SectionIntro>
 
   <div class="capability-grid">
     {home.capabilities.map((item) => (
       <article class="capability-card">
-        <p class="capability-card__kicker">{item.title}</p>
-        <h3>{item.description}</h3>
+        <p class="capability-card__kicker">{item.eyebrow}</p>
+        <h3>{item.title}</h3>
         <p>{item.detail}</p>
       </article>
     ))}

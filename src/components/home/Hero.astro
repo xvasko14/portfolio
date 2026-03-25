@@ -20,11 +20,11 @@ import { home } from "../../data/home";
 
     <div class="home-hero__panel" aria-hidden="true">
       <div class="home-hero__panel-header">
-        <span>ops://signal</span>
-        <span>stable path</span>
+        <span>{home.hero.panel.label}</span>
+        <span>{home.hero.panel.status}</span>
       </div>
       <ul class="home-hero__highlights">
-        {home.hero.highlights.map((item) => (
+        {home.hero.panel.highlights.map((item) => (
           <li>{item}</li>
         ))}
       </ul>
