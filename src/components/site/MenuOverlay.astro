@@ -1,0 +1,41 @@
+---
+import { site } from "../../data/site";
+---
+
+<div
+  id="site-menu"
+  class="menu-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="site-menu-title"
+  hidden
+  data-menu-overlay
+>
+  <div class="menu-overlay__backdrop" data-menu-close></div>
+  <div class="menu-overlay__panel">
+    <div class="menu-overlay__header">
+      <p class="menu-overlay__eyebrow">Navigation</p>
+      <h2 id="site-menu-title">Site menu</h2>
+      <button class="menu-close" type="button" aria-label="Close menu" data-menu-close>
+        Close
+      </button>
+    </div>
+
+    <nav aria-label="Site menu links">
+      <ul class="menu-overlay__nav">
+        {site.navigation.map((item) => (
+          <li><a href={item.href} data-menu-close>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="menu-overlay__meta">
+      <p>{site.role}</p>
+      <ul class="menu-overlay__socials" aria-label="Social links">
+        {site.socials.map((item) => (
+          <li><a href={item.href} target="_blank" rel="noreferrer">{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>
