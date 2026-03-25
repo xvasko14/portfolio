@@ -124,7 +124,6 @@ main {
 
 .site-nav a,
 .button-link,
-.menu-toggle,
 .menu-close,
 .site-footer__socials a,
 .menu-overlay__socials a {
@@ -136,6 +135,23 @@ main {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.04);
   text-decoration: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.menu-toggle {
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
   color: inherit;
   font: inherit;
   cursor: pointer;
