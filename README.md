@@ -18,8 +18,11 @@ npm run dev
 
 ```bash
 npm run test:e2e
+npm run test:e2e:preview
 npm run build
 ```
+
+`npm run test:e2e:preview` runs the same Playwright suite against a lightweight static server serving the built `dist/` output.
 
 ## Deployment
 

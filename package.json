@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "test:e2e": "playwright test",
+    "test:e2e:preview": "playwright test -c playwright.preview.config.ts",
     "test:e2e:headed": "playwright test --headed"
   },
   "dependencies": {

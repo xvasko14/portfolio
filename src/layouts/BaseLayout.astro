@@ -4,8 +4,6 @@ import { site } from "../data/site";
 import Header from "../components/site/Header.astro";
 import MenuOverlay from "../components/site/MenuOverlay.astro";
 import Footer from "../components/site/Footer.astro";
-import menuScriptHref from "../scripts/menu.ts?url";
-import revealScriptHref from "../scripts/reveal.ts?url";
 
 interface Props {
   description?: string;
@@ -57,7 +55,7 @@ const ogImageUrl = hasSiteUrl ? new URL(site.assets.ogImage, site.url).href : nu
       </div>
     </div>
 
-    <script type="module" src={menuScriptHref}></script>
-    <script type="module" src={revealScriptHref}></script>
+    <script type="module" src="/menu.js"></script>
+    <script type="module" src="/reveal.js"></script>
   </body>
 </html>
