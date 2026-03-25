@@ -1,9 +1,11 @@
+import { SITE_URL } from "./site-config.js";
+
 export const site = {
   title: "Vasko Michal",
   role: "DevOps Developer",
   description:
     "DevOps developer building reliable infrastructure, delivery pipelines, and calmer engineering systems.",
-  url: "https://example.eu",
+  url: SITE_URL,
   navigation: [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
