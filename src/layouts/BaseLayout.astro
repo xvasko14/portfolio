@@ -71,7 +71,7 @@ const shouldRenderRouteIntro = routeIntroMode !== "none";
 
     <div class="site-shell">
       <MenuOverlay />
-      <div data-menu-content>
+      <div data-menu-content data-route-intro-content>
         <Header />
 
         <main>
@@ -84,5 +84,6 @@ const shouldRenderRouteIntro = routeIntroMode !== "none";
 
     <script type="module" src="/menu.js"></script>
     <script type="module" src="/reveal.js"></script>
+    <script type="module" src="/route-intros.js"></script>
   </body>
 </html>

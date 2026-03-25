@@ -18,4 +18,11 @@ test("main routes expose the shared route intro contract", async ({ page }) => {
     await expect(root).toHaveAttribute("data-route-intro-mode", route.mode);
     await expect(root.locator("[data-route-intro-heading]")).toHaveText(route.heading);
   }
+
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveAttribute("data-route-intro-ready", "true");
+  await expect(page.locator("[data-route-intro-root]")).toHaveAttribute(
+    "data-route-intro-mode",
+    "home-greetings",
+  );
 });
