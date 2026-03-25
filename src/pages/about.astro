@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/ui/Section.astro";
+import SectionIntro from "../components/ui/SectionIntro.astro";
+import { about } from "../data/about";
+---
+
+<BaseLayout title="About" description="About Vasko Michal, a DevOps developer focused on reliable delivery and practical infrastructure.">
+  <Section class="page-hero">
+    <div class="content-width">
+      <p class="section-intro__eyebrow">{about.hero.eyebrow}</p>
+      <h1>{about.hero.title}</h1>
+      <p class="page-hero__lead">{about.hero.body}</p>
+    </div>
+  </Section>
+
+  <Section>
+    <SectionIntro eyebrow={about.howIWork.eyebrow} title={about.howIWork.title}>
+      <p>Small choices compound into stable delivery habits. The process stays simple on purpose.</p>
+    </SectionIntro>
+
+    <div class="list-block">
+      <ol class="list-block__items list-block__items--numbered">
+        {about.howIWork.points.map((point) => <li>{point}</li>)}
+      </ol>
+    </div>
+  </Section>
+
+  <Section>
+    <SectionIntro eyebrow={about.principles.eyebrow} title={about.principles.title}>
+      <p>These are the values that shape the work and keep the portfolio honest.</p>
+    </SectionIntro>
+
+    <div class="list-block">
+      <ul class="list-block__items">
+        {about.principles.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </Section>
+
+  <Section>
+    <SectionIntro eyebrow={about.stack.eyebrow} title={about.stack.title}>
+      <p>The stack stays focused on delivery, infrastructure, and the tools used to keep systems repeatable.</p>
+    </SectionIntro>
+
+    <div class="list-block">
+      <ul class="list-block__items list-block__items--compact">
+        {about.stack.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </Section>
+</BaseLayout>

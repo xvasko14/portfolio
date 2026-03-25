@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/ui/Section.astro";
+import { contact } from "../data/contact";
+---
+
+<BaseLayout title="Contact" description="Contact Vasko Michal by email, GitHub, or LinkedIn.">
+  <Section class="page-hero">
+    <div class="content-width">
+      <p class="section-intro__eyebrow">{contact.hero.eyebrow}</p>
+      <h1>{contact.hero.title}</h1>
+      <p class="page-hero__lead">{contact.hero.body}</p>
+    </div>
+  </Section>
+
+  <Section class="contact-page">
+    <div class="contact-card">
+      <p class="contact-card__availability">{contact.availability}</p>
+
+      <div class="contact-card__primary">
+        <span class="contact-card__label">Email</span>
+        <a class="contact-card__email" href={contact.email.href}>{contact.email.value}</a>
+      </div>
+
+      <div class="contact-card__links" aria-label="Social links">
+        <a href={contact.github.href} target="_blank" rel="noreferrer">
+          {contact.github.label}
+        </a>
+        <a href={contact.linkedin.href} target="_blank" rel="noreferrer">
+          {contact.linkedin.label}
+        </a>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
