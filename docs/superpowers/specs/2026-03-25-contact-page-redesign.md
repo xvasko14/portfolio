@@ -26,25 +26,46 @@ A full-width split layout with `display: grid; grid-template-columns: 65fr 35fr;
   > *Reach out if you need steadier infrastructure or cleaner delivery.*
 - **Right:** Portrait photo of Vasko Michal (`public/vasko.jpeg`, copied from `ja.jpeg`). Photo treatment: `filter: grayscale(30%)` for a subtle desaturation that fits the dark palette. Slight rounded corners (`border-radius: 4px`). No hard circle crop. `object-fit: cover`, full column width, auto height.
 
-On mobile (below `48rem`): single-column, photo stacks above the statement at a max width of `12rem`.
+On mobile (below `48rem`): single-column, photo stacks above the statement at a max width of `12rem`. Form fields are already full-width so no layout change needed on mobile.
 
 ## Section 2: Contact Form
 
-A numbered form grid inspired by the reference. Four fields arranged 2×2 on desktop (`display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6)`), stacked single-column on mobile (breakpoint: `48rem` / `768px`).
+Four fields stacked vertically, each taking the full width. Each field is separated by a `1px solid var(--border)` line top and bottom. The layout mirrors the reference screenshot exactly.
+
+Each field row:
+- Small monospace number (`01`, `02`, `03`, `04`) top-left, color `var(--muted)`
+- Large question text as the label (e.g., "What's your name?"), prominent size (~`1.5rem`–`2rem`)
+- Input or select below the question, placeholder text in `var(--muted)`
+- No box border on inputs — only the row separator lines
 
 ```
-01  Your name          02  Email address
-03  Company            04  What do you need help with?
+──────────────────────────────────────────────
+01  What's your name?
+    John Doe *
+──────────────────────────────────────────────
+02  What's your email?
+    john@doe.com *
+──────────────────────────────────────────────
+03  What's the name of your company?
+    Acme Corp
+──────────────────────────────────────────────
+04  What do you need help with?
+    Infrastructure, CI/CD, Automation... ▼
+──────────────────────────────────────────────
 ```
 
-Field styling:
-- Number label: `2rem` monospace font, color `var(--muted)`, `font-family` matching the existing monospace accent style
-- Plain text label: small, `var(--muted)`, above the input
-- Input: `font-size: 1rem`, `padding: var(--space-3) 0`, `border: none`, `border-bottom: 1px solid var(--border)`, transparent background
-- Focus state: `border-bottom-color: var(--accent)`
-- Field 04 is a `<select>` dropdown with options: Infrastructure, CI/CD, Automation, Monitoring, Other
+Field copy:
+- 01: "What's your name?"
+- 02: "What's your email?"
+- 03: "What's the name of your company?"
+- 04: "What do you need help with?" — `<select>` with options: Infrastructure, CI/CD, Automation, Monitoring, Other
 
-Submit button: `Send message →` — sits in a full-width row below the 2×2 grid, right-aligned via `display: flex; justify-content: flex-end`. Uses `<ButtonLink variant="solid">`.
+Input styling:
+- `font-size: 1rem`, `padding: var(--space-3) 0`, `border: none`, transparent background
+- Placeholder: `var(--muted)`
+- Focus state: no border change on input itself — the row separator can subtly highlight via accent color on the wrapping element if desired, otherwise no focus ring beyond browser default outline
+
+Submit button: `Send message →` — full-width row below the last field separator, right-aligned via `display: flex; justify-content: flex-end`. Uses `<ButtonLink variant="solid">`.
 
 Form backend: Formspree. The `<form>` action is `https://formspree.io/f/YOUR_FORM_ID`. The user must replace `YOUR_FORM_ID` with the real ID from their Formspree account after registering. Method is `POST`.
 
@@ -81,7 +102,7 @@ Copy as part of implementation. Reference in the page as `src="/vasko.jpeg"`.
 
 - All spacing and color tokens from `global.css` — no new tokens needed
 - Numbers (01–04) use the existing monospace/technical accent style
-- Form inputs use `var(--border)` and `var(--accent)` tokens
+- Form field separators use `1px solid var(--border)`
 - Photo treatment: `filter: grayscale(30%)` — see Section 1
 - Section separator above contact details: `1px solid var(--border)`
 - Bottom bar top separator: `1px solid var(--border)`, padding `var(--space-4) 0`
