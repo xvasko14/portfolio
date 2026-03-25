@@ -141,7 +141,7 @@ const init = () => {
       window.clearInterval(interval);
     }, introDuration - 80);
   } else {
-    greeting.textContent = internalNav ? "Welcome back" : "Hello";
+    greeting.textContent = "";
   }
 
   window.setTimeout(() => {
