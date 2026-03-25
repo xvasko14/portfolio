@@ -20,17 +20,17 @@ The page is divided into four sections stacked vertically:
 
 ## Section 1: Hero
 
-A full-width split layout:
+A full-width split layout with `display: grid; grid-template-columns: 65fr 35fr; gap: var(--space-7)` and `padding: var(--space-7) 0`.
 
-- **Left (~65%):** Small eyebrow label `Contact` in monospace accent style, followed by the H1 statement in large display type:
+- **Left:** Small eyebrow label `Contact` in monospace accent style, followed by the H1 statement in large display type:
   > *Reach out if you need steadier infrastructure or cleaner delivery.*
-- **Right (~35%):** Portrait photo of Vasko Michal (`public/vasko.jpeg`, copied from `ja.jpeg`). The image should have a subtle dark overlay or desaturation to fit the dark palette. Slight rounded corners or natural rectangular crop — no hard circle.
+- **Right:** Portrait photo of Vasko Michal (`public/vasko.jpeg`, copied from `ja.jpeg`). Photo treatment: `filter: grayscale(30%)` for a subtle desaturation that fits the dark palette. Slight rounded corners (`border-radius: 4px`). No hard circle crop. `object-fit: cover`, full column width, auto height.
 
-On mobile: photo stacks above the statement, reduced size.
+On mobile (below `48rem`): single-column, photo stacks above the statement at a max width of `12rem`.
 
 ## Section 2: Contact Form
 
-A numbered form grid inspired by the reference. Four fields arranged 2×2 on desktop, stacked on mobile.
+A numbered form grid inspired by the reference. Four fields arranged 2×2 on desktop (`display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6)`), stacked single-column on mobile (breakpoint: `48rem` / `768px`).
 
 ```
 01  Your name          02  Email address
@@ -38,15 +38,17 @@ A numbered form grid inspired by the reference. Four fields arranged 2×2 on des
 ```
 
 Field styling:
-- Large monospace number label (muted accent color)
-- Plain text label above the input
-- Input with bottom border only — no box, no background
-- Focus state: accent color bottom border
+- Number label: `2rem` monospace font, color `var(--muted)`, `font-family` matching the existing monospace accent style
+- Plain text label: small, `var(--muted)`, above the input
+- Input: `font-size: 1rem`, `padding: var(--space-3) 0`, `border: none`, `border-bottom: 1px solid var(--border)`, transparent background
+- Focus state: `border-bottom-color: var(--accent)`
 - Field 04 is a `<select>` dropdown with options: Infrastructure, CI/CD, Automation, Monitoring, Other
 
-Submit button: `Send message →` — right-aligned, primary button style from the existing `ButtonLink` component.
+Submit button: `Send message →` — sits in a full-width row below the 2×2 grid, right-aligned via `display: flex; justify-content: flex-end`. Uses `<ButtonLink variant="solid">`.
 
 Form backend: Formspree. The `<form>` action is `https://formspree.io/f/YOUR_FORM_ID`. The user must replace `YOUR_FORM_ID` with the real ID from their Formspree account after registering. Method is `POST`.
+
+The Formspree ID is hardcoded directly in `contact.astro` as the `action` attribute value — no data file abstraction needed.
 
 ## Section 3: Contact Details
 
@@ -66,7 +68,7 @@ A thin full-width bar at the bottom of the page (not the shared site footer — 
 - Left: `Local time: HH:MM TZ` — live JavaScript clock, updates every minute, shows user's local timezone abbreviation
 - Right: `© 2026 Vasko Michal`
 
-The clock is driven by a small inline `<script>` in `contact.astro`. No extra script file needed.
+The clock is driven by a small inline `<script>` in `contact.astro`. No extra script file needed. The timezone abbreviation uses the browser's `Intl.DateTimeFormat` with `timeZoneName: "short"` — output like "GMT+1" or "CET" is accepted as-is without normalization.
 
 ## Photo Asset
 
@@ -79,15 +81,16 @@ Copy as part of implementation. Reference in the page as `src="/vasko.jpeg"`.
 
 - All spacing and color tokens from `global.css` — no new tokens needed
 - Numbers (01–04) use the existing monospace/technical accent style
-- Form inputs extend the existing `--color-border` and `--color-accent` tokens
-- Photo overlay: CSS `filter` or a pseudo-element with low-opacity dark background — keep it subtle
-- The section separator above contact details: `1px solid var(--color-border)`
+- Form inputs use `var(--border)` and `var(--accent)` tokens
+- Photo treatment: `filter: grayscale(30%)` — see Section 1
+- Section separator above contact details: `1px solid var(--border)`
+- Bottom bar top separator: `1px solid var(--border)`, padding `var(--space-4) 0`
 
 ## Files Affected
 
 - `public/vasko.jpeg` — new asset (copy from source)
 - `src/pages/contact.astro` — full restructure
-- `src/data/contact.ts` — update copy, add Formspree placeholder
+- `src/data/contact.ts` — update availability copy if needed (Formspree ID lives directly in `contact.astro`, not in this data file)
 - `src/styles/global.css` — add contact page styles (form fields, hero split, bottom bar, photo)
 
 ## Non-Goals
@@ -99,4 +102,4 @@ Copy as part of implementation. Reference in the page as `src="/vasko.jpeg"`.
 
 ## Compatibility Note
 
-The route intros implementation plan (`2026-03-25-route-intros-implementation.md`) also modifies `contact.astro` (adds `routeIntroMode` and `routeIntroTitle` props to BaseLayout). Implement this contact redesign after the route intros feature is merged, or be prepared to resolve that one-line conflict manually.
+The route intros implementation plan (`2026-03-25-route-intros-implementation.md`) modifies both `contact.astro` (adds `routeIntroMode` and `routeIntroTitle` props to BaseLayout) and `src/styles/global.css` (adds overlay styles). This contact redesign also rewrites `contact.astro` wholesale and adds styles to `global.css`. Implement this redesign after the route intros feature is merged to avoid conflicts in both files, or resolve the conflicts manually by ensuring the `routeIntroMode="page-title" routeIntroTitle="Contact"` props are present on the BaseLayout call in the redesigned `contact.astro`.
