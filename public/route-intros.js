@@ -3,7 +3,7 @@ const ROUTE_PATHS = new Set(["/", "/about", "/projects", "/contact"]);
 const ROOT_SELECTOR = "[data-route-intro-root]";
 const PAGE_TITLE_STATE_DURATION = 780;
 const HOME_TITLE_STATE_DURATION = 900;
-const GREETING_STATE_DURATION = 1280;
+const GREETING_STATE_DURATION = 1560;
 const REVEAL_CLEANUP_DELAY = 320;
 
 const normalizePath = (value) => {
@@ -189,11 +189,11 @@ const init = () => {
       }
 
       greeting.textContent = greetings[index];
-    }, 120);
+    }, 170);
 
     window.setTimeout(() => {
       window.clearInterval(interval);
-    }, introDuration - 100);
+    }, introDuration - 140);
   } else {
     greeting.textContent = "";
   }
