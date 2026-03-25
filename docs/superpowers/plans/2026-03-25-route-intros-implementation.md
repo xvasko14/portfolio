@@ -48,7 +48,8 @@ test("about direct load exposes the shared route intro shell", async ({ page }) 
   await page.goto("/about");
 
   const intro = page.locator("[data-route-intro-root]");
-  await expect(intro).toBeVisible();
+  await expect(intro).toHaveCount(1);
+  await expect(intro).toBeHidden();
   await expect(intro).toHaveAttribute("data-route-intro-mode", "page-title");
   await expect(page.locator("[data-route-intro-heading]")).toHaveText("About");
 });
@@ -59,7 +60,7 @@ test("about direct load exposes the shared route intro shell", async ({ page }) 
 Run:
 
 ```bash
-npm run test:e2e -- tests/e2e/route-intros.spec.ts
+npm run test:e2e:preview -- tests/e2e/route-intros.spec.ts
 ```
 
 Expected: FAIL because there is no shared route-intro shell or metadata yet.
@@ -117,6 +118,8 @@ Render one shared overlay shell near the top of `<body>`:
 </div>
 ```
 
+Keep the Task 1 shell hidden by default so the shared layout does not visibly regress before the Task 2 controller owns reveal/show behavior.
+
 Pass metadata from the main routes:
 
 ```astro
@@ -140,7 +143,7 @@ Also serialize the shared route config from `src/data/route-intros.ts` into the 
 Run:
 
 ```bash
-npm run test:e2e -- tests/e2e/route-intros.spec.ts
+npm run test:e2e:preview -- tests/e2e/route-intros.spec.ts
 ```
 
 Expected: PASS.
@@ -180,7 +183,7 @@ This keeps the automated coverage intentionally light: it verifies the home bran
 Run:
 
 ```bash
-npm run test:e2e -- tests/e2e/route-intros.spec.ts
+npm run test:e2e:preview -- tests/e2e/route-intros.spec.ts
 ```
 
 Expected: FAIL because the route-intro controller is not yet installed and `data-route-intro-ready` is never set.
@@ -272,7 +275,7 @@ Use the local dev server and manually verify:
 Run:
 
 ```bash
-npm run test:e2e -- tests/e2e/route-intros.spec.ts
+npm run test:e2e:preview -- tests/e2e/route-intros.spec.ts
 npm run test:e2e -- tests/e2e/smoke.spec.ts
 npm run test:e2e -- tests/e2e/projects.spec.ts
 npm run build
