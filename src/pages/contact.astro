@@ -1,9 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../data/site";
+import { mainRouteTitles } from "../data/route-intros";
 ---
 
-<BaseLayout title="Contact" description="Contact Vasko Michal by email, LinkedIn, Instagram, or Facebook.">
+<BaseLayout
+  title="Contact"
+  description="Contact Vasko Michal by email, LinkedIn, Instagram, or Facebook."
+  routeIntroMode="page-title"
+  routeIntroTitle={mainRouteTitles["/contact"]}
+>
   <!-- Section 1: Hero -->
     <section class="contact-hero content-width">
       <div class="contact-hero__text">

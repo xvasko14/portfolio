@@ -3,9 +3,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Section from "../components/ui/Section.astro";
 import SectionIntro from "../components/ui/SectionIntro.astro";
 import { about } from "../data/about";
+import { mainRouteTitles } from "../data/route-intros";
 ---
 
-<BaseLayout title="About" description="About Vasko Michal, a DevOps developer focused on reliable delivery and practical infrastructure.">
+<BaseLayout
+  title="About"
+  description="About Vasko Michal, a DevOps developer focused on reliable delivery and practical infrastructure."
+  routeIntroMode="page-title"
+  routeIntroTitle={mainRouteTitles["/about"]}
+>
   <Section class="page-hero">
     <div class="content-width">
       <p class="section-intro__eyebrow">{about.hero.eyebrow}</p>

@@ -1,20 +1,29 @@
 ---
 import globalStylesHref from "../styles/global.css?url";
 import { site } from "../data/site";
+import { routeIntroConfig, type RouteIntroMode } from "../data/route-intros";
 import Header from "../components/site/Header.astro";
 import MenuOverlay from "../components/site/MenuOverlay.astro";
 import Footer from "../components/site/Footer.astro";
 
 interface Props {
   description?: string;
+  routeIntroMode?: RouteIntroMode;
+  routeIntroTitle?: string;
   title?: string;
 }
 
-const { description = site.description, title = site.title } = Astro.props;
+const {
+  description = site.description,
+  routeIntroMode = "none",
+  routeIntroTitle = "",
+  title = site.title,
+} = Astro.props;
 const pageTitle = title === site.title ? title : `${title} | ${site.title}`;
 const hasSiteUrl = site.url.length > 0;
 const canonicalUrl = hasSiteUrl ? new URL(Astro.url.pathname, site.url).href : null;
 const ogImageUrl = hasSiteUrl ? new URL(site.assets.ogImage, site.url).href : null;
+const shouldRenderRouteIntro = routeIntroMode !== "none";
 ---
 
 <!doctype html>
@@ -38,13 +47,36 @@ const ogImageUrl = hasSiteUrl ? new URL(site.assets.ogImage, site.url).href : nu
     <meta name="twitter:description" content={description} />
     {ogImageUrl ? <meta property="og:image" content={ogImageUrl} /> : null}
     {ogImageUrl ? <meta name="twitter:image" content={ogImageUrl} /> : null}
+    {shouldRenderRouteIntro ? (
+      <script is:inline>
+        {`document.documentElement.dataset.routeIntroPending = "true";`}
+      </script>
+    ) : null}
     <link rel="preload" href={globalStylesHref} as="style" />
     <link rel="stylesheet" href={globalStylesHref} />
   </head>
   <body>
+    {shouldRenderRouteIntro ? (
+      <div
+        class="route-intro"
+        data-route-intro-root
+        data-route-intro-mode={routeIntroMode}
+        aria-hidden="true"
+        hidden
+      >
+        <div class="route-intro__inner">
+          <p class="route-intro__marker" data-route-intro-marker>•</p>
+          <p class="route-intro__greeting" data-route-intro-greeting></p>
+          <h1 class="route-intro__title" data-route-intro-heading>{routeIntroTitle}</h1>
+        </div>
+      </div>
+    ) : null}
+
+    <script type="application/json" id="route-intro-config" set:html={JSON.stringify(routeIntroConfig)} />
+
     <div class="site-shell">
       <MenuOverlay />
-      <div data-menu-content>
+      <div data-menu-content data-route-intro-content>
         <Header />
 
         <main>
@@ -57,5 +89,6 @@ const ogImageUrl = hasSiteUrl ? new URL(site.assets.ogImage, site.url).href : nu
 
     <script type="module" src="/menu.js"></script>
     <script type="module" src="/reveal.js"></script>
+    <script type="module" src="/route-intros.js"></script>
   </body>
 </html>
