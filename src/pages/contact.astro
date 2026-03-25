@@ -4,13 +4,14 @@ import Section from "../components/ui/Section.astro";
 import ButtonLink from "../components/ui/ButtonLink.astro";
 import { contact } from "../data/contact";
 import { site } from "../data/site";
+import { mainRouteTitles } from "../data/route-intros";
 ---
 
 <BaseLayout
   title="Contact"
   description="Contact Vasko Michal by LinkedIn, Instagram, Facebook, or email."
   routeIntroMode="page-title"
-  routeIntroTitle="Contact"
+  routeIntroTitle={mainRouteTitles["/contact"]}
 >
   <Section class="page-hero">
     <div class="content-width">

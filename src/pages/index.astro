@@ -6,9 +6,10 @@ import Capabilities from "../components/home/Capabilities.astro";
 import Credibility from "../components/home/Credibility.astro";
 import ProjectPreview from "../components/home/ProjectPreview.astro";
 import ContactBand from "../components/home/ContactBand.astro";
+import { mainRouteTitles } from "../data/route-intros";
 ---
 
-<BaseLayout routeIntroMode="home-greetings" routeIntroTitle="Home">
+<BaseLayout routeIntroMode="home-greetings" routeIntroTitle={mainRouteTitles["/"]}>
   <Hero />
   <Intro />
   <Capabilities />
