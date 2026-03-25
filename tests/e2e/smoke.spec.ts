@@ -24,6 +24,8 @@ test("about and contact pages expose key content", async ({ page }) => {
   await expect(main.locator('input[name="email"]')).toBeVisible();
   await expect(main.locator('input[name="company"]')).toBeVisible();
   await expect(main.locator('select[name="services"]')).toBeVisible();
+  // New: submit button
+  await expect(main.locator('button[type="submit"]')).toBeVisible();
   // Existing: contact links still present
   await expect(main.getByRole("link", { name: "Email" })).toHaveAttribute("href", /^mailto:/);
   await expect(main.getByRole("link", { name: "LinkedIn" })).toBeVisible();

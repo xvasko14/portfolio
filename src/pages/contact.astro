@@ -4,8 +4,7 @@ import { site } from "../data/site";
 ---
 
 <BaseLayout title="Contact" description="Contact Vasko Michal by email, LinkedIn, Instagram, or Facebook.">
-  <main>
-    <!-- Section 1: Hero -->
+  <!-- Section 1: Hero -->
     <section class="contact-hero content-width">
       <div class="contact-hero__text">
         <p class="section-intro__eyebrow">Contact</p>
@@ -87,7 +86,7 @@ import { site } from "../data/site";
         </div>
 
         <div class="contact-form__submit">
-          <button type="submit" class="button-link">Send message &rarr;</button>
+          <button type="submit" class="button-link button-link--solid">Send message &rarr;</button>
         </div>
       </form>
     </section>
@@ -97,18 +96,17 @@ import { site } from "../data/site";
       <div class="contact-links">
         <a href={site.contact.email.href}>{site.contact.email.label}</a>
         {site.socials.map((item) => (
-          <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>
+          <a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a>
         ))}
       </div>
       <p class="contact-availability">Currently available for new projects</p>
     </section>
 
     <!-- Section 4: Bottom bar -->
-    <div class="contact-bar content-width">
-      <span id="contact-local-time">Local time: &#8212;</span>
-      <span>&copy; 2026 Vasko Michal</span>
-    </div>
-  </main>
+  <div class="contact-bar content-width">
+    <span id="contact-local-time">Local time: &#8212;</span>
+    <span>&copy; 2026 Vasko Michal</span>
+  </div>
 </BaseLayout>
 
 <script>
