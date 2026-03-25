@@ -16,7 +16,7 @@ const { description = site.description, title = site.title } = Astro.props;
 const pageTitle = title === site.title ? title : `${title} | ${site.title}`;
 const hasSiteUrl = site.url.length > 0;
 const canonicalUrl = hasSiteUrl ? new URL(Astro.url.pathname, site.url).href : null;
-const ogImageUrl = hasSiteUrl ? new URL(site.assets.ogImage, site.url).href : site.assets.ogImage;
+const ogImageUrl = hasSiteUrl ? new URL(site.assets.ogImage, site.url).href : null;
 ---
 
 <!doctype html>
@@ -35,11 +35,11 @@ const ogImageUrl = hasSiteUrl ? new URL(site.assets.ogImage, site.url).href : si
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     {canonicalUrl ? <meta property="og:url" content={canonicalUrl} /> : null}
-    <meta property="og:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImageUrl} />
+    {ogImageUrl ? <meta property="og:image" content={ogImageUrl} /> : null}
+    {ogImageUrl ? <meta name="twitter:image" content={ogImageUrl} /> : null}
     <link rel="preload" href={globalStylesHref} as="style" />
     <link rel="stylesheet" href={globalStylesHref} />
   </head>
