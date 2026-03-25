@@ -47,6 +47,11 @@ const shouldRenderRouteIntro = routeIntroMode !== "none";
     <meta name="twitter:description" content={description} />
     {ogImageUrl ? <meta property="og:image" content={ogImageUrl} /> : null}
     {ogImageUrl ? <meta name="twitter:image" content={ogImageUrl} /> : null}
+    {shouldRenderRouteIntro ? (
+      <script is:inline>
+        {`document.documentElement.dataset.routeIntroPending = "true";`}
+      </script>
+    ) : null}
     <link rel="preload" href={globalStylesHref} as="style" />
     <link rel="stylesheet" href={globalStylesHref} />
   </head>

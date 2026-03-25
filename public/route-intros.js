@@ -1,9 +1,9 @@
 const ROUTE_INTRO_KEY = "route-intro-next-route";
 const ROUTE_PATHS = new Set(["/", "/about", "/projects", "/contact"]);
 const ROOT_SELECTOR = "[data-route-intro-root]";
-const HIDDEN_STATE_DELAY = 320;
 const TITLE_STATE_DURATION = 960;
 const GREETING_STATE_DURATION = 1400;
+const REVEAL_CLEANUP_DELAY = 360;
 
 const normalizePath = (value) => {
   if (value === "/") {
@@ -80,8 +80,52 @@ const markReady = () => {
   document.documentElement.dataset.routeIntroReady = "true";
 };
 
+const clearPending = () => {
+  delete document.documentElement.dataset.routeIntroPending;
+};
+
+const clearRuntimeState = () => {
+  delete document.documentElement.dataset.routeIntroActive;
+  delete document.documentElement.dataset.routeIntroComplete;
+};
+
+const installRouteInterceptor = () => {
+  document.addEventListener(
+    "click",
+    (event) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      const target = event.target instanceof Element ? event.target.closest("a[href]") : null;
+
+      if (!isMainRouteLink(target)) {
+        return;
+      }
+
+      event.preventDefault();
+      writeHandoff(normalizePath(new URL(target.href, window.location.href).pathname));
+      window.location.assign(target.href);
+    },
+    true,
+  );
+};
+
+const clearRootState = (root) => {
+  delete root.dataset.routeIntroVisible;
+  delete root.dataset.routeIntroState;
+};
+
 const init = () => {
   markReady();
+  installRouteInterceptor();
 
   const root = document.querySelector(ROOT_SELECTOR);
 
@@ -95,6 +139,7 @@ const init = () => {
   const content = document.querySelector("[data-route-intro-content]");
 
   if (!heading || !greeting || !marker || !content) {
+    clearPending();
     return;
   }
 
@@ -102,6 +147,7 @@ const init = () => {
   const path = normalizePath(window.location.pathname);
 
   if (!ROUTE_PATHS.has(path)) {
+    clearPending();
     return;
   }
 
@@ -119,6 +165,8 @@ const init = () => {
   root.dataset.routeIntroVisible = "true";
   root.dataset.routeIntroState = mode;
   document.documentElement.dataset.routeIntroActive = "true";
+  clearPending();
+
   if (body) {
     body.classList.add("route-intro-active");
   }
@@ -150,32 +198,14 @@ const init = () => {
 
     window.setTimeout(() => {
       root.hidden = true;
-      delete document.documentElement.dataset.routeIntroActive;
+      clearRootState(root);
+      clearRuntimeState();
+
       if (body) {
         body.classList.remove("route-intro-active");
       }
-    }, HIDDEN_STATE_DELAY);
+    }, REVEAL_CLEANUP_DELAY);
   }, introDuration);
-
-  document.addEventListener(
-    "click",
-    (event) => {
-      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
-        return;
-      }
-
-      const target = event.target instanceof Element ? event.target.closest("a[href]") : null;
-
-      if (!isMainRouteLink(target)) {
-        return;
-      }
-
-      event.preventDefault();
-      writeHandoff(normalizePath(new URL(target.href, window.location.href).pathname));
-      window.location.assign(target.href);
-    },
-    true,
-  );
 };
 
 init();

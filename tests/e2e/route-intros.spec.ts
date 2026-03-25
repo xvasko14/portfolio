@@ -26,3 +26,12 @@ test("main routes expose the shared route intro contract", async ({ page }) => {
     "home-greetings",
   );
 });
+
+test("internal navigation back home uses the title-led intro", async ({ page }) => {
+  await page.goto("/projects/homelab-observability");
+  await page.getByRole("link", { name: /^home$/i }).click();
+
+  const root = page.locator("[data-route-intro-root]");
+  await expect(root).toHaveAttribute("data-route-intro-state", "home-title");
+  await expect(root.locator("[data-route-intro-heading]")).toHaveText("Home");
+});
