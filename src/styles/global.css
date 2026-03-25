@@ -258,6 +258,15 @@ main {
   .project-card {
     transition: none;
   }
+
+  .site-nav a:hover,
+  .button-link:hover,
+  .menu-toggle:hover,
+  .menu-close:hover,
+  .project-card:hover {
+    box-shadow: none;
+    transform: none;
+  }
 }
 
 .section {
@@ -568,6 +577,21 @@ p {
   transform: translateY(-2px);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .capability-card,
+  .credibility-item,
+  .project-preview-card {
+    transition: none;
+  }
+
+  .capability-card:hover,
+  .credibility-item:hover,
+  .project-preview-card:hover {
+    box-shadow: none;
+    transform: none;
+  }
+}
+
 .capability-card__kicker,
 .credibility-item__label {
   margin-bottom: 0.75rem;
@@ -731,10 +755,6 @@ p {
   font-size: clamp(1.6rem, 5vw, 2.75rem);
   letter-spacing: -0.04em;
   text-decoration: none;
-}
-
-.menu-overlay__nav a:hover {
-  transform: translateX(0.2rem);
 }
 
 .menu-overlay__meta {

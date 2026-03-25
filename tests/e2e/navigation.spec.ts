@@ -49,3 +49,13 @@ test("unknown routes render the branded 404 page", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toContainText(/not found|404/i);
   await expect(page.getByRole("link", { name: /back home/i })).toBeVisible();
 });
+
+test("reduced motion disables homepage reveal and card transitions", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+
+  await expect(page.locator("[data-reveal]").first()).toHaveCSS("transition-duration", "0s");
+  await expect(page.locator(".capability-card").first()).toHaveCSS("transition-duration", "0s");
+  await expect(page.locator(".credibility-item").first()).toHaveCSS("transition-duration", "0s");
+  await expect(page.locator(".project-preview-card").first()).toHaveCSS("transition-duration", "0s");
+});
