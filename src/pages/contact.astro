@@ -1,32 +1,131 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Section from "../components/ui/Section.astro";
-import ButtonLink from "../components/ui/ButtonLink.astro";
-import { contact } from "../data/contact";
 import { site } from "../data/site";
 ---
 
-<BaseLayout title="Contact" description="Contact Vasko Michal by LinkedIn, Instagram, Facebook, or email.">
-  <Section class="page-hero">
-    <div class="content-width">
-      <p class="section-intro__eyebrow">{contact.hero.eyebrow}</p>
-      <h1>{contact.hero.title}</h1>
-      <p class="page-hero__lead">{contact.hero.body}</p>
-    </div>
-  </Section>
+<BaseLayout title="Contact" description="Contact Vasko Michal by email, LinkedIn, Instagram, or Facebook.">
+  <main>
+    <!-- Section 1: Hero -->
+    <section class="contact-hero content-width">
+      <div class="contact-hero__text">
+        <p class="section-intro__eyebrow">Contact</p>
+        <h1>Reach out if you need steadier infrastructure or cleaner delivery.</h1>
+      </div>
+      <div class="contact-hero__photo">
+        <img src="/vasko.jpeg" alt="Vasko Michal" width="400" height="500" />
+      </div>
+    </section>
 
-  <Section class="contact-page">
-    <div class="contact-card">
-      <p class="contact-card__availability">{contact.availability}</p>
+    <!-- Section 2: Form -->
+    <section class="contact-form-section content-width">
+      <form
+        class="contact-form"
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+      >
+        <div class="contact-field">
+          <span class="contact-field__number" aria-hidden="true">01</span>
+          <div class="contact-field__body">
+            <label class="contact-field__question" for="name">What&rsquo;s your name?</label>
+            <input
+              class="contact-field__input"
+              id="name"
+              name="name"
+              type="text"
+              placeholder="John Doe"
+              required
+            />
+          </div>
+        </div>
 
-      <div class="contact-actions" aria-label="Contact links">
-        <ButtonLink href={site.contact.email.href}>{site.contact.email.label}</ButtonLink>
+        <div class="contact-field">
+          <span class="contact-field__number" aria-hidden="true">02</span>
+          <div class="contact-field__body">
+            <label class="contact-field__question" for="email">What&rsquo;s your email?</label>
+            <input
+              class="contact-field__input"
+              id="email"
+              name="email"
+              type="email"
+              placeholder="john@doe.com"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="contact-field">
+          <span class="contact-field__number" aria-hidden="true">03</span>
+          <div class="contact-field__body">
+            <label class="contact-field__question" for="company">What&rsquo;s the name of your company?</label>
+            <input
+              class="contact-field__input"
+              id="company"
+              name="company"
+              type="text"
+              placeholder="Acme Corp"
+            />
+          </div>
+        </div>
+
+        <div class="contact-field contact-field--last">
+          <span class="contact-field__number" aria-hidden="true">04</span>
+          <div class="contact-field__body">
+            <label class="contact-field__question" for="services">What do you need help with?</label>
+            <select
+              class="contact-field__input contact-field__select"
+              id="services"
+              name="services"
+            >
+              <option value="" disabled selected>Infrastructure, CI/CD, Automation&hellip;</option>
+              <option value="Infrastructure">Infrastructure</option>
+              <option value="CI/CD">CI/CD</option>
+              <option value="Automation">Automation</option>
+              <option value="Monitoring">Monitoring</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="contact-form__submit">
+          <button type="submit" class="button-link">Send message &rarr;</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Section 3: Contact links -->
+    <section class="contact-links-section content-width">
+      <div class="contact-links">
+        <a href={site.contact.email.href}>{site.contact.email.label}</a>
         {site.socials.map((item) => (
-          <ButtonLink href={item.href} target="_blank" rel="noreferrer" variant="ghost">
-            {item.label}
-          </ButtonLink>
+          <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>
         ))}
       </div>
+      <p class="contact-availability">Currently available for new projects</p>
+    </section>
+
+    <!-- Section 4: Bottom bar -->
+    <div class="contact-bar content-width">
+      <span id="contact-local-time">Local time: &#8212;</span>
+      <span>&copy; 2026 Vasko Michal</span>
     </div>
-  </Section>
+  </main>
 </BaseLayout>
+
+<script>
+  function updateTime() {
+    const el = document.getElementById("contact-local-time");
+    if (!el) return;
+    const now = new Date();
+    const time = now.toLocaleTimeString(undefined, {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    const tz =
+      new Intl.DateTimeFormat(undefined, { timeZoneName: "short" })
+        .formatToParts(now)
+        .find((p) => p.type === "timeZoneName")?.value ?? "";
+    el.textContent = `Local time: ${time}${tz ? " " + tz : ""}`;
+  }
+  updateTime();
+  setInterval(updateTime, 60_000);
+</script>

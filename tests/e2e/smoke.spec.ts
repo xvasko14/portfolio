@@ -16,6 +16,15 @@ test("about and contact pages expose key content", async ({ page }) => {
   await page.goto("/contact");
   const main = page.getByRole("main");
   await expect(main.getByRole("heading", { level: 1 })).toBeVisible();
+  // New: photo
+  await expect(main.locator('img[src="/vasko.jpeg"]')).toBeVisible();
+  // New: Formspree form with the four inputs
+  await expect(main.locator('form[action*="formspree.io"]')).toBeVisible();
+  await expect(main.locator('input[name="name"]')).toBeVisible();
+  await expect(main.locator('input[name="email"]')).toBeVisible();
+  await expect(main.locator('input[name="company"]')).toBeVisible();
+  await expect(main.locator('select[name="services"]')).toBeVisible();
+  // Existing: contact links still present
   await expect(main.getByRole("link", { name: "Email" })).toHaveAttribute("href", /^mailto:/);
   await expect(main.getByRole("link", { name: "LinkedIn" })).toBeVisible();
   await expect(main.getByRole("link", { name: "Instagram" })).toBeVisible();
