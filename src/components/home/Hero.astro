@@ -1,35 +1,32 @@
 ---
-import ButtonLink from "../ui/ButtonLink.astro";
-import { home } from "../../data/home";
+// No props needed — content is hardcoded for the personal brand hero
 ---
 
-<section class="home-hero section">
-  <div class="container home-hero__grid">
-    <div class="home-hero__content">
-      <p class="section-intro__eyebrow home-hero__eyebrow" data-reveal data-reveal-delay="0ms">
-        {home.hero.eyebrow}
-      </p>
-      <h1>{home.hero.headline}</h1>
-      <p class="home-hero__lead" data-reveal data-reveal-delay="90ms">{home.hero.copy}</p>
+<section class="home-hero" aria-label="Vasko Michal — hero photo">
+  <div class="home-hero__photo-wrap">
+    <img
+      class="home-hero__photo"
+      src="/beh.jpg"
+      alt="Vasko Michal running"
+      width="2400"
+      height="1512"
+      data-hero-photo
+    />
+  </div>
 
-      <div class="home-hero__actions" data-reveal data-reveal-delay="160ms">
-        <ButtonLink href={home.hero.primaryCta.href}>{home.hero.primaryCta.label}</ButtonLink>
-        <ButtonLink href={home.hero.secondaryCta.href} variant="ghost">
-          {home.hero.secondaryCta.label}
-        </ButtonLink>
-      </div>
+  <div class="home-hero__overlay">
+    <p class="home-hero__location">
+      <span class="home-hero__location-dot" aria-hidden="true"></span>
+      Bratislava, SK
+    </p>
+
+    <div class="home-hero__center">
+      <p class="home-hero__role">DevOps Engineer</p>
+      <h1 class="home-hero__name">Vasko Michal</h1>
     </div>
 
-    <div class="home-hero__panel" aria-hidden="true" data-reveal data-reveal-delay="220ms">
-      <div class="home-hero__panel-header">
-        <span>{home.hero.panel.label}</span>
-        <span>{home.hero.panel.status}</span>
-      </div>
-      <ul class="home-hero__highlights">
-        {home.hero.panel.highlights.map((item) => (
-          <li>{item}</li>
-        ))}
-      </ul>
-    </div>
+    <p class="home-hero__scroll" aria-hidden="true">Scroll ↓</p>
   </div>
 </section>
+
+<script type="module" src="/hero.js"></script>
