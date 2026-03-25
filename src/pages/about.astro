@@ -5,7 +5,12 @@ import SectionIntro from "../components/ui/SectionIntro.astro";
 import { about } from "../data/about";
 ---
 
-<BaseLayout title="About" description="About Vasko Michal, a DevOps developer focused on reliable delivery and practical infrastructure.">
+<BaseLayout
+  title="About"
+  description="About Vasko Michal, a DevOps developer focused on reliable delivery and practical infrastructure."
+  routeIntroMode="page-title"
+  routeIntroTitle="About"
+>
   <Section class="page-hero">
     <div class="content-width">
       <p class="section-intro__eyebrow">{about.hero.eyebrow}</p>

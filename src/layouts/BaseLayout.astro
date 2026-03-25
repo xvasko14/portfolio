@@ -1,16 +1,24 @@
 ---
 import globalStylesHref from "../styles/global.css?url";
 import { site } from "../data/site";
+import { routeIntroConfig, type RouteIntroMode } from "../data/route-intros";
 import Header from "../components/site/Header.astro";
 import MenuOverlay from "../components/site/MenuOverlay.astro";
 import Footer from "../components/site/Footer.astro";
 
 interface Props {
   description?: string;
+  routeIntroMode?: RouteIntroMode;
+  routeIntroTitle?: string;
   title?: string;
 }
 
-const { description = site.description, title = site.title } = Astro.props;
+const {
+  description = site.description,
+  routeIntroMode = "none",
+  routeIntroTitle = site.title,
+  title = site.title,
+} = Astro.props;
 const pageTitle = title === site.title ? title : `${title} | ${site.title}`;
 const hasSiteUrl = site.url.length > 0;
 const canonicalUrl = hasSiteUrl ? new URL(Astro.url.pathname, site.url).href : null;
@@ -42,6 +50,16 @@ const ogImageUrl = hasSiteUrl ? new URL(site.assets.ogImage, site.url).href : nu
     <link rel="stylesheet" href={globalStylesHref} />
   </head>
   <body>
+    <div class="route-intro" data-route-intro-root data-route-intro-mode={routeIntroMode} aria-hidden="true">
+      <div class="route-intro__inner">
+        <p class="route-intro__marker" data-route-intro-marker>•</p>
+        <p class="route-intro__greeting" data-route-intro-greeting></p>
+        <h1 class="route-intro__title" data-route-intro-heading>{routeIntroTitle}</h1>
+      </div>
+    </div>
+
+    <script type="application/json" id="route-intro-config" set:html={JSON.stringify(routeIntroConfig)} />
+
     <div class="site-shell">
       <MenuOverlay />
       <div data-menu-content>
