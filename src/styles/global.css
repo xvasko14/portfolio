@@ -118,6 +118,10 @@ main {
   list-style: none;
 }
 
+.menu-toggle {
+  display: none;
+}
+
 .site-nav a,
 .button-link,
 .menu-toggle,
@@ -285,6 +289,10 @@ p {
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35);
 }
 
+.menu-overlay__panel:focus {
+  outline: none;
+}
+
 .menu-overlay__header {
   display: flex;
   align-items: flex-start;
@@ -334,5 +342,13 @@ p {
 
   .site-nav ul {
     gap: var(--space-2);
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
   }
 }

@@ -28,14 +28,16 @@ const pageTitle = title === site.title ? title : `${title} | ${site.title}`;
   </head>
   <body>
     <div class="site-shell">
-      <Header />
       <MenuOverlay />
+      <div data-menu-content>
+        <Header />
 
-      <main>
-        <slot />
-      </main>
+        <main>
+          <slot />
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
 
     <script type="module" src={menuScriptHref}></script>
