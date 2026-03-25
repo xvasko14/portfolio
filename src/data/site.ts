@@ -1,8 +1,8 @@
-import { SITE_URL } from "./site-config.js";
+import { PROVISIONAL_SITE_URL } from "./site-config.js";
 
 const contact = {
   status: "provisional",
-  note: "Placeholder contact channels until the real accounts are connected.",
+  note: "Contact channels remain provisional until the real accounts are connected.",
   github: { href: "https://github.com/your-handle", label: "GitHub" },
   linkedin: { href: "https://linkedin.com/in/your-handle", label: "LinkedIn" },
   email: { href: "mailto:hello@example.com", label: "Email" },
@@ -13,7 +13,11 @@ export const site = {
   role: "DevOps Developer",
   description:
     "DevOps developer building reliable infrastructure, delivery pipelines, and calmer engineering systems.",
-  url: SITE_URL,
+  url: PROVISIONAL_SITE_URL,
+  assets: {
+    favicon: "/favicon.svg",
+    ogImage: "/og-default.svg",
+  },
   navigation: [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },

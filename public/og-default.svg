@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Vasko Michal portfolio preview</title>
+  <desc id="desc">Default social preview image for the portfolio site.</desc>
+  <defs>
+    <linearGradient id="bg" x1="96" y1="42" x2="1104" y2="588" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#091629" />
+      <stop offset="0.62" stop-color="#07111f" />
+      <stop offset="1" stop-color="#04070d" />
+    </linearGradient>
+    <linearGradient id="glow" x1="248" y1="106" x2="1048" y2="548" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#57d2ff" stop-opacity="0.5" />
+      <stop offset="1" stop-color="#57d2ff" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="accent" x1="330" y1="158" x2="900" y2="484" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#57d2ff" />
+      <stop offset="1" stop-color="#b9f4ff" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect x="72" y="72" width="1056" height="486" rx="36" fill="none" stroke="rgba(148,167,189,0.18)" />
+  <path d="M220 140h760l94 178-94 178H220l-94-178 94-178Z" fill="url(#glow)" />
+  <circle cx="946" cy="168" r="84" fill="#57d2ff" fill-opacity="0.08" />
+  <circle cx="1006" cy="470" r="130" fill="#57d2ff" fill-opacity="0.05" />
+  <g fill="none" stroke="rgba(87,210,255,0.22)" stroke-width="1">
+    <path d="M160 138h880" />
+    <path d="M160 182h880" />
+    <path d="M160 488h880" />
+  </g>
+  <text x="160" y="286" fill="#f3f7fb" font-family="IBM Plex Sans, Inter, Arial, sans-serif" font-size="74" font-weight="700">
+    Vasko Michal
+  </text>
+  <text x="160" y="348" fill="#57d2ff" font-family="IBM Plex Mono, SFMono-Regular, monospace" font-size="28" letter-spacing="0.22em">
+    DEVOPS DEVELOPER
+  </text>
+  <text x="160" y="410" fill="#94a7bd" font-family="IBM Plex Sans, Inter, Arial, sans-serif" font-size="30">
+    Reliable infrastructure, delivery pipelines, and calmer engineering systems.
+  </text>
+  <path
+    d="M788 208h56.6l41.2 108 41.1-108H984l-88.1 196h-19.7L788 208Z"
+    fill="url(#accent)"
+  />
+</svg>
