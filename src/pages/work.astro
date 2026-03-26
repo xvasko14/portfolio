@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/ui/Section.astro";
+import { work } from "../data/work";
+import { mainRouteTitles } from "../data/route-intros";
+---
+
+<BaseLayout
+  title="Work"
+  description="Work history of Vasko Michal — DevOps Engineer with experience in Kubernetes, CI/CD, and infrastructure."
+  routeIntroMode="page-title"
+  routeIntroTitle={mainRouteTitles["/work"]}
+>
+  <Section class="page-hero">
+    <div class="content-width">
+      <p class="section-intro__eyebrow">{work.hero.eyebrow}</p>
+      <h1>{work.hero.title}</h1>
+      <p class="page-hero__lead">{work.hero.body}</p>
+    </div>
+  </Section>
+
+  <Section>
+    {/* No content-width wrapper here — intentional. Non-hero sections in about.astro
+        also omit it. The .work-timeline has its own max-width: 680px constraint. */}
+    <div class="work-timeline">
+      {work.entries.map((entry) => (
+        <div class={`work-timeline__row${entry.highlight ? " work-timeline__row--highlight" : ""}`}>
+          <div class="work-timeline__year">
+            <span class="work-timeline__dot" aria-hidden="true"></span>
+            <span class="work-timeline__period">{entry.period}</span>
+          </div>
+          <div class="work-timeline__content">
+            <h2 class="work-timeline__role">{entry.role}</h2>
+            <p class="work-timeline__company">{entry.company} &middot; {entry.location}</p>
+            <p class="work-timeline__desc">{entry.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Section>
+</BaseLayout>
