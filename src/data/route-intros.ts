@@ -1,15 +1,17 @@
 export const homeGreetings = [
-  "Hello",
-  "Ahoj",
-  "Bonjour",
-  "Hola",
-  "Ciao",
-  "Hallo",
-  "Hej",
+  "Kubernetes",
+  "Docker",
+  "Argo CD",
+  "Terraform",
+  "Ansible",
+  "Grafana",
+  "Linux",
+  "GitOps",
+  "Bash",
 ] as const;
 
 export const mainRouteTitles = {
-  "/": "Home",
+  "/": "Vasko Michal",
   "/about": "About",
   "/projects": "Projects",
   "/contact": "Contact",
