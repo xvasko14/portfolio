@@ -40,7 +40,15 @@ const navIndicatorControllers = navIndicatorRoots
       return true;
     };
 
-    const refresh = () => placeIndicator(currentLink ?? getActiveLink());
+    const refresh = () => {
+      if (!isVisible()) {
+        currentLink = null;
+        root.dataset.navIndicatorReady = "false";
+        return false;
+      }
+
+      return placeIndicator(currentLink ?? getActiveLink());
+    };
 
     const reset = () => {
       currentLink = null;
@@ -148,6 +156,12 @@ if (openButton && overlay && panel) {
     });
   };
 
+  const getCloseFocusTarget = () => {
+    const targets = [openButton, header?.querySelector("[data-header-top-nav] a"), header?.querySelector(".site-brand")];
+
+    return targets.find((element) => element && element.getClientRects().length > 0) ?? openButton;
+  };
+
   const syncState = (isOpen) => {
     openButton.setAttribute("aria-expanded", String(isOpen));
     overlay.hidden = !isOpen;
@@ -169,7 +183,7 @@ if (openButton && overlay && panel) {
   const closeMenu = () => {
     overlayIndicator?.reset();
     syncState(false);
-    focusOnNextFrame(openButton);
+    focusOnNextFrame(getCloseFocusTarget());
   };
 
   openButton.addEventListener("click", openMenu);
