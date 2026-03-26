@@ -13,6 +13,7 @@ export const homeGreetings = [
 export const mainRouteTitles = {
   "/": "Vasko Michal",
   "/about": "About",
+  "/work": "Work",
   "/projects": "Projects",
   "/contact": "Contact",
 } as const;

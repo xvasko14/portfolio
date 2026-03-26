@@ -1,5 +1,5 @@
 const ROUTE_INTRO_KEY = "route-intro-next-route";
-const ROUTE_PATHS = new Set(["/", "/about", "/projects", "/contact"]);
+const ROUTE_PATHS = new Set(["/", "/about", "/work", "/projects", "/contact"]);
 const ROOT_SELECTOR = "[data-route-intro-root]";
 const PAGE_TITLE_STATE_DURATION = 780;
 const HOME_TITLE_STATE_DURATION = 900;

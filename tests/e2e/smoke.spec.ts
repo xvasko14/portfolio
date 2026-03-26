@@ -4,9 +4,10 @@ test("homepage exposes the site shell", async ({ page }) => {
   await page.goto("/");
   await expect(page).toHaveTitle(/Vasko/i);
   await expect(page.getByRole("link", { name: /about/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /work/i })).toBeVisible();
   await expect(page.getByRole("link", { name: /projects/i })).toBeVisible();
   await expect(page.getByRole("link", { name: /contact/i })).toBeVisible();
-  // New hero assertions
+  // Hero assertions
   await expect(page.locator('img[src="/beh.jpg"]')).toBeVisible();
   await expect(page.locator(".home-hero__name")).toContainText("Vasko Michal");
 });
@@ -34,4 +35,10 @@ test("about and contact pages expose key content", async ({ page }) => {
   await expect(main.getByRole("link", { name: "LinkedIn" })).toBeVisible();
   await expect(main.getByRole("link", { name: "Instagram" })).toBeVisible();
   await expect(main.getByRole("link", { name: "Facebook" })).toBeVisible();
+});
+
+test("work page shows timeline", async ({ page }) => {
+  await page.goto("/work");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Where I have worked");
+  await expect(page.getByRole("heading", { level: 2, name: /DevOps Engineer/i }).first()).toBeVisible();
 });
