@@ -242,7 +242,7 @@ html[data-route-intro-ready="true"][data-route-intro-active="true"] .route-intro
   align-items: center;
   gap: clamp(1.15rem, 2.1vw, 2.2rem);
   margin: 0;
-  padding: 0;
+  padding: 0 0 0.1rem;
   list-style: none;
 }
 
@@ -287,8 +287,15 @@ html[data-route-intro-ready="true"][data-route-intro-active="true"] .route-intro
   transform: scale(1);
 }
 
+.site-header__nav-link,
+.menu-overlay__primary-link {
+  position: relative;
+  z-index: 1;
+}
+
 [data-nav-indicator-root] {
   position: relative;
+  isolation: isolate;
 }
 
 [data-nav-indicator] {
@@ -301,6 +308,7 @@ html[data-route-intro-ready="true"][data-route-intro-active="true"] .route-intro
   background: currentColor;
   opacity: 0;
   transform: translate(-50%, -50%) scale(var(--nav-indicator-scale, 1));
+  z-index: 0;
   transition:
     left 220ms cubic-bezier(0.22, 1, 0.36, 1),
     top 220ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -311,11 +319,11 @@ html[data-route-intro-ready="true"][data-route-intro-active="true"] .route-intro
 }
 
 [data-nav-indicator-root="header"] {
-  --nav-indicator-size: 0.48rem;
+  --nav-indicator-size: 0.44rem;
 }
 
 [data-nav-indicator-root="overlay"] {
-  --nav-indicator-size: 0.56rem;
+  --nav-indicator-size: 0.5rem;
 }
 
 .js [data-nav-indicator-root][data-nav-indicator-ready="true"] [data-nav-indicator] {
@@ -1068,7 +1076,7 @@ p {
   display: grid;
   gap: clamp(0.72rem, 1.8vw, 1.1rem);
   margin: 0;
-  padding: 0;
+  padding: 0 0 0.1rem;
   list-style: none;
 }
 

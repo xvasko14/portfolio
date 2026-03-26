@@ -18,7 +18,7 @@ const navIndicatorControllers = navIndicatorRoots
       return null;
     }
 
-    const offset = root.dataset.navIndicatorRoot === "overlay" ? 12 : 10;
+    const offset = root.dataset.navIndicatorRoot === "overlay" ? 10 : 8;
     let currentLink = null;
 
     const getActiveLink = () => root.querySelector('[data-nav-indicator-link][aria-current="page"]');
