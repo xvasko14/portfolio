@@ -1,16 +1,15 @@
 export const about = {
   hero: {
     eyebrow: "About",
-    title: "I build reliable delivery systems that stay legible under pressure.",
-    body:
-      "I focus on the parts of engineering work that affect trust: infrastructure, release flow, observability, and the handoffs that keep teams moving without drama.",
+    title: "I build delivery infrastructure that teams can trust on their worst day.",
+    body: "Over four years as a DevOps Engineer, most of it in complex multi-client and production environments. I work on Kubernetes, Terraform, Argo CD, and the observability layer that keeps production honest.",
   },
   howIWork: {
     eyebrow: "Approach",
     title: "How I work",
     points: [
       "Keep the critical path small so problems are easier to see and easier to fix.",
-      "Automate the repetitive steps first, then document the decisions that matter later.",
+      "Automate the repetitive steps first, then document the decisions that matter.",
       "Prefer boring, inspectable systems over clever setups that only one person understands.",
     ],
   },
@@ -27,6 +26,19 @@ export const about = {
   stack: {
     eyebrow: "Core stack",
     title: "Core stack",
-    items: ["Terraform", "Docker", "GitHub Actions", "Kubernetes", "Linux", "Python", "TypeScript"],
+    items: [
+      "Kubernetes",
+      "Argo CD",
+      "Terraform",
+      "Ansible",
+      "Docker",
+      "Linux",
+      "Grafana",
+      "Zabbix",
+      "Azure DevOps",
+      "Python",
+      "Bash",
+      "C#",
+    ],
   },
 } as const;

@@ -12,10 +12,10 @@ export interface CredibilitySignal {
 
 export const home = {
   hero: {
-    eyebrow: "DevOps Developer",
+    eyebrow: "DevOps Engineer",
     headline: "Reliable infrastructure and delivery systems for teams that need less drama.",
     copy:
-      "I design platform foundations, CI/CD flows, and operational guardrails that help products ship steadily. This homepage uses honest placeholder content that is easy to replace with real projects and metrics.",
+      "I design platform foundations, CI/CD flows, and operational guardrails that help products ship steadily.",
     primaryCta: {
       href: "/about",
       label: "How I work",
@@ -35,9 +35,9 @@ export const home = {
     },
   },
   intro: {
-    eyebrow: "Positioning",
-    title: "I work at the point where product ambition meets operational reality.",
-    body: "The focus is not on adding more moving parts. It is on making the critical path more dependable, the deployment story more predictable, and the day-to-day engineering experience easier to trust.",
+    eyebrow: "About me",
+    title: "I keep delivery infrastructure steady so engineers can focus on the product.",
+    body: "Based in Brno — originally from Prešov, moved here for university and stayed. I have spent over four years as a DevOps Engineer managing Kubernetes clusters, CI/CD pipelines, GitOps deployments, and the observability layer that makes production trustworthy. Currently at Kajot maintaining game server infrastructure and Argo CD-based delivery. Outside of work I am training for my next marathon and following football closely.",
   },
   capabilitiesSection: {
     eyebrow: "Capabilities",
@@ -46,56 +46,59 @@ export const home = {
   },
   capabilities: [
     {
-      eyebrow: "Platform foundations",
-      title: "Terraform-driven environments, deployment baselines, and service scaffolding.",
-      detail: "I aim for setups that are understandable by the next engineer, not just automatable by the first one.",
+      eyebrow: "Container orchestration",
+      title: "Kubernetes clusters in production, containerized workloads, Docker-based environments.",
+      detail:
+        "From initial setup to day-two operations — maintaining clusters that stay reliable under real production load.",
     },
     {
-      eyebrow: "Delivery systems",
-      title: "CI/CD pipelines, release workflows, and quality gates that fit the team.",
-      detail: "The goal is faster iteration with fewer surprises, especially during handoffs and production changes.",
+      eyebrow: "CI/CD & GitOps",
+      title: "Delivery pipelines, Argo CD deployments, and release workflows that reduce friction.",
+      detail:
+        "Built and maintained pipelines using Azure DevOps and Argo CD across multiple years and environments.",
     },
     {
-      eyebrow: "Operational clarity",
-      title: "Logging, monitoring, and incident-ready feedback loops that reduce guesswork.",
-      detail: "Good operations should make important signals obvious before a release or outage becomes expensive.",
+      eyebrow: "Observability & ops",
+      title: "Grafana, Zabbix, and monitoring setups that surface problems before they become outages.",
+      detail:
+        "Good signals make on-call manageable. I build dashboards and alerting that teams actually trust.",
     },
   ] satisfies Capability[],
   credibility: {
     eyebrow: "Credibility",
-    title: "Tech focus and proof signals",
-    body: "Still early in the portfolio build-out, so the proof points stay modest and specific instead of inflated.",
+    title: "Experience and proof signals",
+    body: "Real numbers from real environments.",
     signals: [
       {
-        label: "Primary focus",
-        value: "DevOps + delivery reliability",
-        note: "Pipelines, environments, and operating practices that support steady releases.",
+        label: "DevOps experience",
+        value: "4+ years",
+        note: "DevOps engineering across gaming, fintech, and enterprise client environments since 2021.",
       },
       {
-        label: "Working style",
-        value: "Practical automation",
-        note: "Automate the painful path first, then document the trade-offs clearly.",
+        label: "Certification",
+        value: "AZ-204",
+        note: "Microsoft Certified: Azure Developer Associate — hands-on Azure and Azure DevOps experience.",
       },
       {
-        label: "Current status",
-        value: "Portfolio in progress",
-        note: "Project details here are editable placeholders until final case studies are published.",
+        label: "Current stack",
+        value: "Kubernetes + Argo CD",
+        note: "Managing production K8s clusters and GitOps delivery at Kajot since September 2025.",
       },
     ] satisfies CredibilitySignal[],
   },
   projects: {
     eyebrow: "Selected work",
     title: "Selected work",
-    body: "The projects section now points to a real content collection. It starts with one honest starter entry and leaves room for stronger case studies later.",
+    body: "A growing collection of infrastructure and delivery work.",
     footerCta: {
       href: "/projects",
-      label: "Browse project direction",
+      label: "Browse all projects",
     },
   },
   contact: {
     eyebrow: "Next step",
-    title: "Need steadier infrastructure or cleaner delivery?",
-    body: "If you are shaping a platform, improving releases, or reducing avoidable operational friction, get in touch.",
+    title: "Have infrastructure challenges or delivery bottlenecks?",
+    body: "Whether you are scaling a platform, tightening release workflows, or need someone who has done it in production — get in touch.",
     cta: {
       href: "/contact",
       label: "Get in touch",
