@@ -445,7 +445,7 @@ html[data-route-intro-ready="true"][data-route-intro-active="true"] .route-intro
 
 .home-hero__center {
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 1rem;
 }
 
 .home-hero__role {
@@ -457,8 +457,15 @@ html[data-route-intro-ready="true"][data-route-intro-active="true"] .route-intro
   margin: 0 0 0.5rem;
 }
 
+.home-hero__marquee {
+  overflow: hidden;
+  margin-left: calc(-1 * clamp(1.5rem, 5vw, 4rem));
+  margin-right: calc(-1 * clamp(1.5rem, 5vw, 4rem));
+}
+
 .home-hero__name {
-  font-size: clamp(4rem, 16vw, 14rem);
+  display: flex;
+  font-size: clamp(3.5rem, 12vw, 10rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -466,7 +473,23 @@ html[data-route-intro-ready="true"][data-route-intro-active="true"] .route-intro
   color: #fff;
   margin: 0;
   white-space: nowrap;
+  animation: hero-marquee 14s linear infinite;
   will-change: transform;
+}
+
+@keyframes hero-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero__name {
+    animation: none;
+  }
 }
 
 .home-hero__scroll {
@@ -482,11 +505,11 @@ html[data-route-intro-ready="true"][data-route-intro-active="true"] .route-intro
 
 @media (max-width: 768px) {
   .home-hero__name {
-    font-size: clamp(3rem, 14vw, 6rem);
+    font-size: clamp(2.5rem, 10vw, 4rem);
   }
 
   .home-hero__center {
-    margin-bottom: 5rem;
+    margin-bottom: 1rem;
   }
 }
 
