@@ -1,4 +1,5 @@
 const photo = document.querySelector("[data-hero-photo]");
+const name = document.querySelector("[data-hero-name]");
 
 if (photo && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let ticking = false;
@@ -6,7 +7,11 @@ if (photo && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   const onScroll = () => {
     if (!ticking) {
       requestAnimationFrame(() => {
-        photo.style.transform = `translateY(${window.scrollY * 0.35}px)`;
+        const y = window.scrollY;
+        photo.style.transform = `translateY(${y * 0.35}px)`;
+        if (name) {
+          name.style.transform = `translateX(${-y * 0.25}px)`;
+        }
         ticking = false;
       });
       ticking = true;
