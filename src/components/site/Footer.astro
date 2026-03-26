@@ -11,28 +11,21 @@ const iconMap: Record<string, string> = {
 
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <div>
-      <a class="site-brand" href="/">
-        <strong>{site.title}</strong>
-        <span>{site.role}</span>
-      </a>
-    </div>
+    <p class="site-footer__copy">&copy; {new Date().getFullYear()} Vasko Michal</p>
 
-    <div class="site-footer__content">
-      <ul class="site-footer__socials" aria-label="Footer social links">
-        {site.socials.map((item) => (
-          <li>
-            <a class="footer-icon-link" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={item.label}>
-              <Fragment set:html={iconMap[item.label] ?? item.label} />
-            </a>
-          </li>
-        ))}
+    <ul class="site-footer__socials" aria-label="Footer social links">
+      {site.socials.map((item) => (
         <li>
-          <a class="footer-icon-link" href={site.contact.email.href} aria-label="Email">
-            <Fragment set:html={iconMap["Email"]} />
+          <a class="footer-icon-link" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={item.label}>
+            <Fragment set:html={iconMap[item.label] ?? item.label} />
           </a>
         </li>
-      </ul>
-    </div>
+      ))}
+      <li>
+        <a class="footer-icon-link" href={site.contact.email.href} aria-label="Email">
+          <Fragment set:html={iconMap["Email"]} />
+        </a>
+      </li>
+    </ul>
   </div>
 </footer>

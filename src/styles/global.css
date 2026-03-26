@@ -928,6 +928,13 @@ p {
   gap: var(--space-4);
 }
 
+.site-footer__copy {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
 .site-footer__contact-note {
   display: grid;
   gap: 0.5rem;
