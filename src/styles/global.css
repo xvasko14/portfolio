@@ -916,6 +916,122 @@ p {
   pointer-events: none;
 }
 
+/* ─── Work timeline ─────────────────────────────────────── */
+
+.work-timeline {
+  display: flex;
+  flex-direction: column;
+  max-width: 680px;
+}
+
+.work-timeline__row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  position: relative;
+}
+
+.work-timeline__year {
+  text-align: right;
+  padding-right: 1.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 2.5rem;
+  border-right: 2px solid var(--border);
+  position: relative;
+}
+
+.work-timeline__row:last-child .work-timeline__year {
+  padding-bottom: 0;
+}
+
+.work-timeline__dot {
+  position: absolute;
+  right: -5px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.work-timeline__row--highlight .work-timeline__dot {
+  background: var(--accent);
+}
+
+.work-timeline__period {
+  display: block;
+  font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.work-timeline__row--highlight .work-timeline__period {
+  color: var(--accent);
+}
+
+.work-timeline__content {
+  padding-left: 1.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.work-timeline__row:last-child .work-timeline__content {
+  padding-bottom: 0;
+}
+
+.work-timeline__role {
+  font-size: 1rem;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--text) 60%, var(--muted));
+  margin: 0 0 0.35rem;
+  line-height: 1.3;
+}
+
+.work-timeline__row--highlight .work-timeline__role {
+  color: var(--text);
+}
+
+.work-timeline__company {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0 0 0.6rem;
+}
+
+.work-timeline__desc {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+}
+
+.work-timeline__row--highlight .work-timeline__desc {
+  color: color-mix(in srgb, var(--text) 55%, var(--muted));
+}
+
+@media (max-width: 640px) {
+  .work-timeline__row {
+    grid-template-columns: 1fr;
+  }
+
+  .work-timeline__year {
+    border-right: none;
+    text-align: left;
+    padding-right: 0;
+    padding-bottom: 0.2rem;
+    padding-top: 0;
+  }
+
+  .work-timeline__dot {
+    display: none;
+  }
+
+  .work-timeline__content {
+    padding-left: 0;
+  }
+}
+
 .site-footer {
   padding: var(--space-7) 0 var(--space-6);
 }
