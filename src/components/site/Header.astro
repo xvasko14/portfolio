@@ -19,7 +19,7 @@ const isActivePath = (href: string) => {
       <span>{site.role}</span>
     </a>
 
-    <nav class="site-header__nav" aria-label="Primary" data-header-top-nav>
+    <nav class="site-header__nav" aria-label="Primary" data-header-top-nav data-nav-indicator-root="header">
       <ul class="site-header__nav-list">
         {site.navigation.map((item) => {
           const active = isActivePath(item.href);
@@ -30,6 +30,7 @@ const isActivePath = (href: string) => {
                 href={item.href}
                 class:list={{ "site-header__nav-link": true, "is-active": active }}
                 data-nav-link
+                data-nav-indicator-link
                 data-nav-active={active ? "true" : "false"}
                 aria-current={active ? "page" : undefined}
               >
@@ -40,6 +41,7 @@ const isActivePath = (href: string) => {
           );
         })}
       </ul>
+      <span class="site-header__nav-indicator" aria-hidden="true" data-nav-indicator></span>
     </nav>
 
     <button

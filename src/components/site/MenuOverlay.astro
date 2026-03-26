@@ -29,7 +29,7 @@ const isActivePath = (href: string) => {
       </button>
     </div>
 
-    <nav class="menu-overlay__primary" aria-label="Site menu links">
+    <nav class="menu-overlay__primary" aria-label="Site menu links" data-nav-indicator-root="overlay">
       <ul class="menu-overlay__primary-list">
         {site.navigation.map((item) => {
           const active = isActivePath(item.href);
@@ -40,6 +40,7 @@ const isActivePath = (href: string) => {
                 href={item.href}
                 class:list={{ "menu-overlay__primary-link": true, "is-active": active }}
                 data-nav-link
+                data-nav-indicator-link
                 data-nav-active={active ? "true" : "false"}
                 data-menu-close
                 aria-current={active ? "page" : undefined}
@@ -51,6 +52,7 @@ const isActivePath = (href: string) => {
           );
         })}
       </ul>
+      <span class="menu-overlay__primary-indicator" aria-hidden="true" data-nav-indicator></span>
     </nav>
 
     <div class="menu-overlay__footer">
