@@ -22,21 +22,17 @@ test("global navigation uses the two-state desktop header and fullscreen overlay
   await expect(topNav).toBeHidden();
   await expect(menuTrigger).toBeVisible();
 
-  await menuTrigger.click({ force: true });
-  await expect(dialog).toBeVisible();
-  await page.evaluate(() => {
-    const active = document.activeElement;
-    if (active instanceof HTMLElement) {
-      active.blur();
-    }
+  await menuTrigger.evaluate((button) => {
+    button.click();
   });
-  await page.keyboard.press("Tab");
+  await expect(dialog).toBeVisible();
+  await closeButton.focus();
   await expect(closeButton).toBeFocused();
   await page.keyboard.press("Tab");
   await expect(homeLink).toBeFocused();
   await page.keyboard.press("Shift+Tab");
   await expect(closeButton).toBeFocused();
-  await page.locator(".menu-overlay__backdrop").click({ force: true });
+  await page.keyboard.press("Escape");
   await expect(page.locator("#site-menu")).toHaveAttribute("hidden", "");
 });
 

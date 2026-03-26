@@ -1,11 +1,41 @@
 document.documentElement.classList.add("js");
 
+const header = document.querySelector("[data-site-header]");
 const openButton = document.querySelector("[data-menu-open]");
 const overlay = document.querySelector("[data-menu-overlay]");
 const panel = document.querySelector("[data-menu-panel]");
 const closeButton = document.querySelector(".menu-close[data-menu-close]");
 const content = document.querySelector("[data-menu-content]");
 const closeTargets = document.querySelectorAll("[data-menu-close]");
+
+if (header) {
+  const topNav = header.querySelector("[data-header-top-nav]");
+  const trigger = header.querySelector("[data-header-menu-trigger]");
+  const desktopQuery = window.matchMedia("(min-width: 721px)");
+  const scrolledOffset = 24;
+
+  const syncHeaderState = () => {
+    if (!topNav || !trigger) {
+      return;
+    }
+
+    const state = desktopQuery.matches
+      ? window.scrollY > scrolledOffset
+        ? "scrolled"
+        : "top"
+      : "mobile";
+
+    header.dataset.headerState = state;
+  };
+
+  syncHeaderState();
+  window.addEventListener("scroll", syncHeaderState, { passive: true });
+  window.addEventListener("resize", syncHeaderState);
+
+  if (typeof desktopQuery.addEventListener === "function") {
+    desktopQuery.addEventListener("change", syncHeaderState);
+  }
+}
 
 if (openButton && overlay && panel) {
   const getFocusableElements = () =>
@@ -14,6 +44,16 @@ if (openButton && overlay && panel) {
         'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
       ),
     ).filter((element) => !element.hidden);
+
+  const focusOnNextFrame = (element) => {
+    if (!element) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      element.focus();
+    });
+  };
 
   const syncState = (isOpen) => {
     openButton.setAttribute("aria-expanded", String(isOpen));
@@ -27,12 +67,12 @@ if (openButton && overlay && panel) {
 
   const openMenu = () => {
     syncState(true);
-    (closeButton ?? panel).focus();
+    focusOnNextFrame(closeButton ?? panel);
   };
 
   const closeMenu = () => {
     syncState(false);
-    openButton.focus();
+    focusOnNextFrame(openButton);
   };
 
   openButton.addEventListener("click", openMenu);
