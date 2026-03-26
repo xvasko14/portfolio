@@ -155,7 +155,10 @@ const init = () => {
   const handoff = readHandoff();
   const internalNav = handoff?.path === path;
   const mode = path === "/" ? (internalNav ? "home-title" : "home-greetings") : "page-title";
-  const title = getRouteTitle(config, path, heading.textContent || "");
+  const title =
+    mode === "home-title"
+      ? config.homeNavTitle || "Home"
+      : getRouteTitle(config, path, heading.textContent || "");
   const greetings = Array.isArray(config.homeGreetings) ? config.homeGreetings : [];
   const introDuration =
     mode === "home-greetings"
