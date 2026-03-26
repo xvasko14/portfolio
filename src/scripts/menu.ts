@@ -15,6 +15,16 @@ if (openButton && overlay && panel) {
       ),
     ).filter((element) => !element.hidden);
 
+  const focusOnNextFrame = (element: HTMLElement | null | undefined) => {
+    if (!element) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      element.focus();
+    });
+  };
+
   const syncState = (isOpen: boolean) => {
     openButton.setAttribute("aria-expanded", String(isOpen));
     overlay.hidden = !isOpen;
@@ -27,12 +37,12 @@ if (openButton && overlay && panel) {
 
   const openMenu = () => {
     syncState(true);
-    (closeButton ?? panel).focus();
+    focusOnNextFrame(closeButton ?? panel);
   };
 
   const closeMenu = () => {
     syncState(false);
-    openButton.focus();
+    focusOnNextFrame(openButton);
   };
 
   openButton.addEventListener("click", openMenu);

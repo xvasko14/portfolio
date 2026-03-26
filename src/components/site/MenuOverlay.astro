@@ -1,6 +1,15 @@
 ---
-import ButtonLink from "../ui/ButtonLink.astro";
 import { site } from "../../data/site";
+
+const pathname = Astro.url.pathname;
+
+const isActivePath = (href: string) => {
+  if (href === "/") {
+    return pathname === "/";
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`);
+};
 ---
 
 <div
@@ -8,42 +17,192 @@ import { site } from "../../data/site";
   class="menu-overlay"
   role="dialog"
   aria-modal="true"
-  aria-labelledby="site-menu-title"
+  aria-label="Site menu"
   hidden
   data-menu-overlay
 >
   <div class="menu-overlay__backdrop" data-menu-close></div>
-  <div class="menu-overlay__panel" tabindex="-1" data-menu-panel>
-    <div class="menu-overlay__header">
-      <p class="menu-overlay__eyebrow">Navigation</p>
-      <h2 id="site-menu-title">Site menu</h2>
-      <button class="menu-close" type="button" aria-label="Close menu" data-menu-close>
+  <div class="menu-overlay__shell" tabindex="-1" data-menu-panel>
+    <div class="menu-overlay__topbar">
+      <button class="menu-close menu-overlay__close" type="button" aria-label="Close menu" data-menu-close>
         Close
       </button>
     </div>
 
-    <nav aria-label="Site menu links">
-      <ul class="menu-overlay__nav">
-        {site.navigation.map((item) => (
-          <li><a href={item.href} data-menu-close>{item.label}</a></li>
-        ))}
+    <nav class="menu-overlay__primary" aria-label="Site menu links">
+      <ul class="menu-overlay__primary-list">
+        {site.navigation.map((item) => {
+          const active = isActivePath(item.href);
+
+          return (
+            <li>
+              <a
+                href={item.href}
+                class:list={{ "menu-overlay__primary-link": true, "is-active": active }}
+                data-nav-link
+                data-nav-active={active ? "true" : "false"}
+                data-menu-close
+                aria-current={active ? "page" : undefined}
+              >
+                <span class="menu-overlay__primary-dot" aria-hidden="true"></span>
+                <span>{item.label}</span>
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </nav>
 
-    <div class="menu-overlay__meta">
-      <p>{site.role}</p>
-      <ul class="menu-overlay__socials" aria-label="Social links">
+    <div class="menu-overlay__footer">
+      <ul class="menu-overlay__secondary-list" aria-label="Social and contact links">
         {site.socials.map((item) => (
           <li>
-            <ButtonLink href={item.href} target="_blank" rel="noreferrer" variant="ghost">
+            <a
+              href={item.href}
+              class="menu-overlay__secondary-link"
+              target="_blank"
+              rel="noreferrer"
+              data-menu-close
+            >
               {item.label}
-            </ButtonLink>
+            </a>
           </li>
         ))}
+        <li>
+          <a class="menu-overlay__secondary-link" href={site.contact.email.href} data-menu-close>
+            {site.contact.email.label}
+          </a>
+        </li>
       </ul>
-      <ButtonLink href={site.contact.email.href} variant="ghost">
-        {site.contact.email.label}
-      </ButtonLink>
     </div>
   </div>
 </div>
+
+<style>
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    display: block;
+    padding: clamp(0.75rem, 2vw, 1.25rem);
+  }
+
+  .menu-overlay__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 5, 12, 0.78);
+    backdrop-filter: blur(14px);
+  }
+
+  .menu-overlay__shell {
+    position: relative;
+    z-index: 1;
+    min-height: calc(100vh - clamp(1.5rem, 4vw, 2.5rem));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(2rem, 6vw, 4rem);
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    background:
+      linear-gradient(180deg, rgba(6, 12, 22, 0.5), rgba(6, 12, 22, 0.24));
+  }
+
+  .menu-overlay__topbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .menu-overlay__close {
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .menu-overlay__primary-list {
+    display: grid;
+    gap: clamp(0.75rem, 2vw, 1.25rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .menu-overlay__primary-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--text);
+    font-size: clamp(2.1rem, 7vw, 4.75rem);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    transition:
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .menu-overlay__primary-link:hover,
+  .menu-overlay__primary-link:focus-visible {
+    transform: translateX(0.15rem);
+  }
+
+  .menu-overlay__primary-link[aria-current="page"] {
+    color: color-mix(in srgb, var(--text) 90%, var(--accent));
+  }
+
+  .menu-overlay__primary-dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0;
+    transform: scale(0.5);
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  .menu-overlay__primary-link[aria-current="page"] .menu-overlay__primary-dot {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .menu-overlay__footer {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .menu-overlay__secondary-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .menu-overlay__secondary-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    transition: color 180ms ease;
+  }
+
+  .menu-overlay__secondary-link:hover,
+  .menu-overlay__secondary-link:focus-visible {
+    color: var(--text);
+  }
+
+  @media (max-width: 720px) {
+    .menu-overlay__shell {
+      padding: 1rem;
+    }
+
+    .menu-overlay__close {
+      width: 2.8rem;
+      height: 2.8rem;
+    }
+  }
+</style>
