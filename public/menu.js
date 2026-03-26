@@ -7,6 +7,83 @@ const panel = document.querySelector("[data-menu-panel]");
 const closeButton = document.querySelector(".menu-close[data-menu-close]");
 const content = document.querySelector("[data-menu-content]");
 const closeTargets = document.querySelectorAll("[data-menu-close]");
+const navIndicatorRoots = Array.from(document.querySelectorAll("[data-nav-indicator-root]"));
+
+const navIndicatorControllers = navIndicatorRoots
+  .map((root) => {
+    const indicator = root.querySelector("[data-nav-indicator]");
+    const links = Array.from(root.querySelectorAll("[data-nav-indicator-link]"));
+
+    if (!indicator || links.length === 0) {
+      return null;
+    }
+
+    const offset = root.dataset.navIndicatorRoot === "overlay" ? 12 : 10;
+    let currentLink = null;
+
+    const getActiveLink = () => root.querySelector('[data-nav-indicator-link][aria-current="page"]');
+    const isVisible = () => root.getClientRects().length > 0;
+
+    const placeIndicator = (link) => {
+      if (!link || !isVisible()) {
+        return false;
+      }
+
+      const rootRect = root.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+      const x = linkRect.left - rootRect.left + linkRect.width / 2;
+      const y = linkRect.bottom - rootRect.top + offset;
+
+      indicator.style.setProperty("--nav-indicator-x", `${x}px`);
+      indicator.style.setProperty("--nav-indicator-y", `${y}px`);
+      root.dataset.navIndicatorReady = "true";
+      return true;
+    };
+
+    const refresh = () => placeIndicator(currentLink ?? getActiveLink());
+
+    const reset = () => {
+      currentLink = null;
+      placeIndicator(getActiveLink());
+    };
+
+    const activate = (link) => {
+      currentLink = link;
+      placeIndicator(link);
+    };
+
+    links.forEach((link) => {
+      link.addEventListener("pointerenter", () => activate(link));
+      link.addEventListener("focusin", () => activate(link));
+    });
+
+    root.addEventListener("pointerleave", () => {
+      reset();
+    });
+
+    root.addEventListener("focusout", (event) => {
+      const relatedTarget = event.relatedTarget;
+
+      if (relatedTarget instanceof Node && root.contains(relatedTarget)) {
+        return;
+      }
+
+      reset();
+    });
+
+    return {
+      refresh,
+      reset,
+      root,
+    };
+  })
+  .filter(Boolean);
+
+const getIndicatorController = (rootName) =>
+  navIndicatorControllers.find((controller) => controller.root.dataset.navIndicatorRoot === rootName);
+
+const headerIndicator = getIndicatorController("header");
+const overlayIndicator = getIndicatorController("overlay");
 
 if (header) {
   const topNav = header.querySelector("[data-header-top-nav]");
@@ -29,8 +106,24 @@ if (header) {
   };
 
   syncHeaderState();
-  window.addEventListener("scroll", syncHeaderState, { passive: true });
-  window.addEventListener("resize", syncHeaderState);
+  headerIndicator?.refresh();
+  window.addEventListener(
+    "scroll",
+    () => {
+      syncHeaderState();
+      headerIndicator?.refresh();
+    },
+    { passive: true },
+  );
+  window.addEventListener(
+    "resize",
+    () => {
+      syncHeaderState();
+      headerIndicator?.refresh();
+      overlayIndicator?.refresh();
+    },
+    { passive: true },
+  );
 
   if (typeof desktopQuery.addEventListener === "function") {
     desktopQuery.addEventListener("change", syncHeaderState);
@@ -67,10 +160,14 @@ if (openButton && overlay && panel) {
 
   const openMenu = () => {
     syncState(true);
+    window.requestAnimationFrame(() => {
+      overlayIndicator?.refresh();
+    });
     focusOnNextFrame(closeButton ?? panel);
   };
 
   const closeMenu = () => {
+    overlayIndicator?.reset();
     syncState(false);
     focusOnNextFrame(openButton);
   };

@@ -233,6 +233,7 @@ html[data-route-intro-ready="true"][data-route-intro-active="true"] .route-intro
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  position: relative;
 }
 
 .site-header__nav-list {
@@ -284,6 +285,47 @@ html[data-route-intro-ready="true"][data-route-intro-active="true"] .route-intro
 .site-header__nav-link[aria-current="page"] .site-header__nav-dot {
   opacity: 1;
   transform: scale(1);
+}
+
+[data-nav-indicator-root] {
+  position: relative;
+}
+
+[data-nav-indicator] {
+  position: absolute;
+  left: var(--nav-indicator-x, 0px);
+  top: var(--nav-indicator-y, 0px);
+  width: var(--nav-indicator-size, 0.5rem);
+  height: var(--nav-indicator-size, 0.5rem);
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(var(--nav-indicator-scale, 1));
+  transition:
+    left 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    top 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 160ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  will-change: left, top, transform;
+}
+
+[data-nav-indicator-root="header"] {
+  --nav-indicator-size: 0.48rem;
+}
+
+[data-nav-indicator-root="overlay"] {
+  --nav-indicator-size: 0.56rem;
+}
+
+.js [data-nav-indicator-root][data-nav-indicator-ready="true"] [data-nav-indicator] {
+  opacity: 1;
+}
+
+.js [data-nav-indicator-root][data-nav-indicator-ready="true"] [data-nav-indicator-link] .site-header__nav-dot,
+.js [data-nav-indicator-root][data-nav-indicator-ready="true"] [data-nav-indicator-link] .menu-overlay__primary-dot {
+  opacity: 0;
+  transform: scale(0.5);
 }
 
 .site-header__trigger {
@@ -482,6 +524,10 @@ html[data-route-intro-ready="true"][data-route-intro-active="true"] .route-intro
   .project-card:hover {
     box-shadow: none;
     transform: none;
+  }
+
+  [data-nav-indicator] {
+    transition-duration: 1ms;
   }
 }
 
@@ -1024,6 +1070,10 @@ p {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.menu-overlay__primary {
+  position: relative;
 }
 
 .menu-overlay__primary-link {
