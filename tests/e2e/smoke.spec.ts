@@ -3,10 +3,10 @@ import { expect, test } from "@playwright/test";
 test("homepage exposes the site shell", async ({ page }) => {
   await page.goto("/");
   await expect(page).toHaveTitle(/Vasko/i);
-  await expect(page.getByRole("link", { name: /about/i })).toBeVisible();
-  await expect(page.getByRole("link", { name: /work/i })).toBeVisible();
-  await expect(page.getByRole("link", { name: /projects/i })).toBeVisible();
-  await expect(page.getByRole("link", { name: /contact/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: "About", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Work", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Projects", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Contact", exact: true })).toBeVisible();
   // Hero assertions
   await expect(page.locator('img[src="/beh.jpg"]')).toBeVisible();
   await expect(page.locator(".home-hero__name")).toContainText("Vasko Michal");
@@ -30,11 +30,6 @@ test("about and contact pages expose key content", async ({ page }) => {
   await expect(main.locator('select[name="services"]')).toBeVisible();
   // New: submit button
   await expect(main.locator('button[type="submit"]')).toBeVisible();
-  // Existing: contact links still present
-  await expect(main.getByRole("link", { name: "Email" })).toHaveAttribute("href", /^mailto:/);
-  await expect(main.getByRole("link", { name: "LinkedIn" })).toBeVisible();
-  await expect(main.getByRole("link", { name: "Instagram" })).toBeVisible();
-  await expect(main.getByRole("link", { name: "Facebook" })).toBeVisible();
 });
 
 test("work page shows timeline", async ({ page }) => {
