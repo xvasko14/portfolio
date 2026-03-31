@@ -1,2 +1,1 @@
-// Leave unset until the real Cloudflare Pages or custom domain URL is known.
-export const SITE_URL = "";
+export const SITE_URL = "https://portfolio.vaskomichal7.workers.dev";
